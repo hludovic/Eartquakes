@@ -7,18 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4320C7682B693DEA00DFBF36 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4320C7672B693DEA00DFBF36 /* HttpClient.swift */; };
+		4320C76B2B693EB000DFBF36 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4320C76A2B693EB000DFBF36 /* Constants.swift */; };
 		437E2D922B60ABD900ED6C51 /* EarthquakesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437E2D912B60ABD900ED6C51 /* EarthquakesApp.swift */; };
 		437E2D942B60ABD900ED6C51 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437E2D932B60ABD900ED6C51 /* ContentView.swift */; };
 		437E2D962B60ABDA00ED6C51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 437E2D952B60ABDA00ED6C51 /* Assets.xcassets */; };
 		437E2D992B60ABDA00ED6C51 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 437E2D982B60ABDA00ED6C51 /* Preview Assets.xcassets */; };
+		43CAFADD2B69451300CD47DC /* Earthquake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CAFADC2B69451300CD47DC /* Earthquake.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4320C7672B693DEA00DFBF36 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
+		4320C76A2B693EB000DFBF36 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		437E2D8E2B60ABD900ED6C51 /* Earthquakes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Earthquakes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		437E2D912B60ABD900ED6C51 /* EarthquakesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakesApp.swift; sourceTree = "<group>"; };
 		437E2D932B60ABD900ED6C51 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		437E2D952B60ABDA00ED6C51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		437E2D982B60ABDA00ED6C51 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		43CAFADC2B69451300CD47DC /* Earthquake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Earthquake.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +38,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4320C7692B693E8300DFBF36 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4320C7672B693DEA00DFBF36 /* HttpClient.swift */,
+				4320C76A2B693EB000DFBF36 /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		4320C76C2B69407E00DFBF36 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				43CAFADC2B69451300CD47DC /* Earthquake.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4320C76D2B69408D00DFBF36 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				437E2D932B60ABD900ED6C51 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		4320C76F2B69413D00DFBF36 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				437E2D952B60ABDA00ED6C51 /* Assets.xcassets */,
+				437E2D972B60ABDA00ED6C51 /* Preview Content */,
+			);
+			name = Resource;
+			sourceTree = "<group>";
+		};
 		437E2D852B60ABD900ED6C51 = {
 			isa = PBXGroup;
 			children = (
@@ -52,9 +92,10 @@
 			isa = PBXGroup;
 			children = (
 				437E2D912B60ABD900ED6C51 /* EarthquakesApp.swift */,
-				437E2D932B60ABD900ED6C51 /* ContentView.swift */,
-				437E2D952B60ABDA00ED6C51 /* Assets.xcassets */,
-				437E2D972B60ABDA00ED6C51 /* Preview Content */,
+				4320C76D2B69408D00DFBF36 /* Views */,
+				4320C76C2B69407E00DFBF36 /* Model */,
+				4320C7692B693E8300DFBF36 /* Utilities */,
+				4320C76F2B69413D00DFBF36 /* Resource */,
 			);
 			path = Earthquakes;
 			sourceTree = "<group>";
@@ -137,8 +178,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43CAFADD2B69451300CD47DC /* Earthquake.swift in Sources */,
 				437E2D942B60ABD900ED6C51 /* ContentView.swift in Sources */,
+				4320C7682B693DEA00DFBF36 /* HttpClient.swift in Sources */,
 				437E2D922B60ABD900ED6C51 /* EarthquakesApp.swift in Sources */,
+				4320C76B2B693EB000DFBF36 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,8 +322,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,8 +350,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
