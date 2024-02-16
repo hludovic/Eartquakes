@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import Earthquakes
 
 final class EarthquakesTests: XCTestCase {
 
@@ -17,12 +18,17 @@ final class EarthquakesTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testExample() async throws {
+        let urlString: String = ApiJsonFeeds.baseURL + ApiJsonFeeds.endpoint + "/" + ApiJsonFeeds.Parameters.month_significant + "." + ApiJsonFeeds.FileFormat.json
+        XCTAssertEqual(urlString, "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson")
+        let url = URL(string: urlString)!
+        print(url)
+
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { return print("BAD RESPONSE") }
+        guard let obj = try? JSONDecoder().decode(Earthquake.self, from: data) else { return print("ERROR DECODE") }
+        print(obj)
+
     }
 
     func testPerformanceExample() throws {
