@@ -29,7 +29,7 @@ struct ApiJsonFeeds {
         static let month_1_0 = "1.0_month"
         static let month_2_5 = "2.5_month"
         static let month_4_5 = "4.5_month.geojson"
-        static let month_significant = "all_month"
+        static let month_significant = "significant_month"
     }
 
     enum FileFormat {
