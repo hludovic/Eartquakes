@@ -9,28 +9,37 @@ struct ApiJsonFeeds {
     static let baseURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/"
     static let endpoint = "summary"
 
-    enum Parameters {
-        static let hour_all = "all_hour"
-        static let hour_1_0 = "1.0_hour"
-        static let hour_2_5 = "2.5_hour"
-        static let hour_4_5 = "4.5_hour"
-        static let hour_significant = "significant_hour"
-        static let day_all = "all_day"
-        static let day_1_0 = "1.0_day"
-        static let day_2_5 = "2.5_day"
-        static let day_4_5 = "4.5_day"
-        static let day_significant = "significant_day"
-        static let week_all = "all_week"
-        static let week_1_0 = "1.0_week"
-        static let week_2_5 = "2.5_week"
-        static let week_4_5 = "4.5_week"
-        static let week_significant = "significant_week"
-        static let month_all = "all_month"
-        static let month_1_0 = "1.0_month"
-        static let month_2_5 = "2.5_month"
-        static let month_4_5 = "4.5_month.geojson"
-        static let month_significant = "significant_month"
+    static func parameters(period: Period, strength: Strength) -> String {
+        let periodString: String
+        switch period {
+        case .oneHour:
+            periodString = "hour"
+        case .aDay:
+            periodString = "day"
+        case .aWeek:
+            periodString = "week"
+        case .aMonth:
+            periodString = "month"
+        }
+
+        let strengthString: String
+        switch strength {
+        case .all:
+            strengthString = "all"
+        case .overMag1:
+            strengthString = "1.0"
+        case .overMag2_5:
+            strengthString = "2.5"
+        case .overMag4_5:
+            strengthString = "4.5"
+        case .significant:
+            strengthString = "significant"
+        }
+        return "\(strengthString)_\(periodString)"
     }
+
+    enum Period { case oneHour, aDay, aWeek, aMonth }
+    enum Strength { case all, overMag1, overMag2_5, overMag4_5, significant }
 
     enum FileFormat {
         static let json = "geojson"

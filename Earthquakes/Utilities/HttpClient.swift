@@ -29,31 +29,14 @@ class HttpClient {
 
     static let shared = HttpClient()
 
-    func fetch<T: Codable> (url: URL) async throws -> [T] {
+    func fetch<T: Decodable> (url: URL, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy) async throws -> T {
         let (data, response) = try await URLSession.shared.data(from: url)
         guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw HttpError.badResponse }
-        guard let object = try? JSONDecoder().decode([T].self, from: data) else {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = dateDecodingStrategy
+        guard let object = try? decoder.decode(T.self, from: data) else {
             throw HttpError.errorEncodingData
         }
         return object
-    }
-
-    func sendData<T: Codable> (to url: URL, data: T, httpMethod: HttpMethods) async throws {
-        var request = URLRequest(url: url)
-        request.httpMethod = httpMethod.rawValue
-        request.addValue(MIMEType.JSON.rawValue, forHTTPHeaderField: HttpHeaders.contentType.rawValue)
-        guard let jsonData = try? JSONEncoder().encode(data) else {
-            return print("Non encodable error")
-        }
-        request.httpBody = jsonData
-        let (_, response) = try await URLSession.shared.data(for: request)
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw HttpError.badResponse }
-    }
-
-    func delete(at id: UUID, url: URL) async throws {
-        var request = URLRequest(url: url)
-        request.httpMethod = HttpMethods.DELETE.rawValue
-        let (_, response) = try await URLSession.shared.data(for: request)
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw HttpError.badResponse }
     }
 }
