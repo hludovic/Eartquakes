@@ -26,7 +26,7 @@ final class EarthquakesTests: XCTestCase {
 
         let (data, response) = try await URLSession.shared.data(from: url)
         guard (response as? HTTPURLResponse)?.statusCode == 200 else { return print("BAD RESPONSE") }
-        guard let obj = try? JSONDecoder().decode(Earthquake.self, from: data) else { return print("ERROR DECODE") }
+        guard let obj = try? JSONDecoder().decode(EarthquakeResult.self, from: data) else { return print("ERROR DECODE") }
         print(obj)
 
     }
