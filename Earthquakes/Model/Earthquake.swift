@@ -8,6 +8,7 @@
 import Foundation
 
 struct Earthquake {
+    let id: String
     let magnitude: Float
     let place: String
     let time: Date
@@ -18,5 +19,6 @@ struct Earthquake {
     let sig: Int
     let type: String
     let title: String
-    let coordinates: [Double]
+    let longitude: Double
+    let latitude: Double
 }

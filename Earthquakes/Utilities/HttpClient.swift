@@ -7,10 +7,6 @@
 
 import Foundation
 
-enum HttpError: Error {
-    case badURL, badResponse, errorEncodingData, invalidURL
-}
-
 enum MIMEType: String {
     case JSON = "application/json"
 }
@@ -34,9 +30,7 @@ class HttpClient {
         guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw HttpError.badResponse }
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = dateDecodingStrategy
-        guard let object = try? decoder.decode(T.self, from: data) else {
-            throw HttpError.errorEncodingData
-        }
+        guard let object = try? decoder.decode(T.self, from: data) else { throw HttpError.errorDecodingData }
         return object
     }
 }

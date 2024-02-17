@@ -21,7 +21,7 @@ final class EarthquakesTests: XCTestCase {
     func testViewModel() async throws {
         let viewModel = EarthquakeViewModel()
         XCTAssertEqual(viewModel.earthquakes.count, 0)
-        try await viewModel.fetchEarthquakes(since: .aMonth, strength: .significant)
+        try await viewModel.fetchEarthquakes(since: .aDay, strength: .all)
         XCTAssertNotEqual(viewModel.earthquakes.count, 0)
     }
 }

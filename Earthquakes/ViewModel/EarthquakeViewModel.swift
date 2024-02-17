@@ -17,11 +17,10 @@ class EarthquakeViewModel: ObservableObject {
     }
 
     private func getGeoJSONFeedUrl(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) -> URL? {
-        let parameter = ApiJsonFeeds.parameters(period: .aMonth, strength: .overMag2_5)
+        let parameter = ApiJsonFeeds.parameters(period: period, strength: strength)
         let urlString: String = ApiJsonFeeds.baseURL + ApiJsonFeeds.endpoint + "/" + parameter + "." + ApiJsonFeeds.FileFormat.json
         return URL(string: urlString)
     }
-
 }
 
 private struct DecodedEarthquakes: Decodable {
@@ -35,6 +34,7 @@ private struct DecodedEarthquakes: Decodable {
 
         for feature in features {
             let earthquake = Earthquake(
+                id: feature.id,
                 magnitude: feature.properties.mag,
                 place: feature.properties.place,
                 time: feature.properties.time,
@@ -45,7 +45,8 @@ private struct DecodedEarthquakes: Decodable {
                 sig: feature.properties.sig,
                 type: feature.properties.type,
                 title: feature.properties.title,
-                coordinates: feature.geometry.coordinates)
+                longitude: feature.geometry.coordinates[0],
+                latitude: feature.geometry.coordinates[1])
             result.append(earthquake)
         }
         earthquakes = result
