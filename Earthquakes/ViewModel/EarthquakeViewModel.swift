@@ -7,7 +7,7 @@
 
 import Foundation
 
-class EarthquakeViewModel: ObservableObject {
+class EarthquakeViewModel: ObservableObject, Networking {
     @Published var earthquakes: [Earthquake] = []
 
     func fetchEarthquakes(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) async throws {
