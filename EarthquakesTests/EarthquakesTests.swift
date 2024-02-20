@@ -9,19 +9,39 @@ import XCTest
 @testable import Earthquakes
 
 final class EarthquakesTests: XCTestCase {
+    var viewModel: EarthquakeViewModel!
+    var mockHttpClient: MockHttpClient!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        try super.setUpWithError()
+        mockHttpClient = MockHttpClient()
+        viewModel = EarthquakeViewModel(httpClient: mockHttpClient)
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        viewModel = nil
+        mockHttpClient = nil
+        try super.tearDownWithError()
     }
 
-    func testViewModel() async throws {
-        let viewModel = EarthquakeViewModel()
+    func testFetchingDataSuccessfully() async throws {
         XCTAssertEqual(viewModel.earthquakes.count, 0)
-        try await viewModel.fetchEarthquakes(since: .aDay, strength: .all)
-        XCTAssertNotEqual(viewModel.earthquakes.count, 0)
+        let mockedData = try mockHttpClient.getFileData(since: .aMonth, strength: .significant)
+        
+        mockHttpClient.throwError = false
+        mockHttpClient.mockedData = mockedData
+
+        try await viewModel.fetchEarthquakes(since: .aMonth, strength: .significant)
+        XCTAssertEqual(viewModel.earthquakes.count, 12)
+    }
+
+    func testFetchingDataWithError() async throws {
+        mockHttpClient.throwError = true
+
+        do {
+            try await viewModel.fetchEarthquakes(since: .aMonth, strength: .significant)
+        } catch let error {
+            XCTAssertEqual(error as! HttpError, HttpError.badResponse)
+        }
     }
 }

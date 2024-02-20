@@ -20,7 +20,7 @@ enum HttpMethods: String {
 
 }
 
-class HttpClient {
+final class HttpClient: Networking {
     private init() { }
 
     static let shared = HttpClient()

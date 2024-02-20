@@ -8,5 +8,5 @@
 import Foundation
 
 protocol Networking {
-    func fetchEarthquakes(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) async throws
+    func fetch<T: Decodable> (url: URL, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy) async throws -> T
 }

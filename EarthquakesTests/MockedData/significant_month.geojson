@@ -1,0 +1,501 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "generated": 1708391608000,
+    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson",
+    "title": "USGS Significant Earthquakes, Past Month",
+    "status": 200,
+    "api": "1.10.3",
+    "count": 12
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 4.81,
+        "place": "3 km NNW of El Centro, CA",
+        "time": 1707726985460,
+        "updated": 1708196806463,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci40666288",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci40666288.geojson",
+        "felt": 2050,
+        "cdi": 5.7,
+        "mmi": 5.843,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 1,
+        "sig": 926,
+        "net": "ci",
+        "code": "40666288",
+        "ids": ",ew1707726990,ci40666288,at00s8qikp,us7000lyke,",
+        "sources": ",ew,ci,at,us,",
+        "types": ",dyfi,focal-mechanism,impact-link,losspager,moment-tensor,nearby-cities,origin,phase-data,scitech-link,shake-alert,shakemap,",
+        "nst": 71,
+        "dmin": 0.05943,
+        "rms": 0.34,
+        "gap": 39,
+        "magType": "mw",
+        "type": "earthquake",
+        "title": "M 4.8 - 3 km NNW of El Centro, CA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -115.5735,
+          32.8135,
+          17.93
+        ]
+      },
+      "id": "ci40666288"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 4.61,
+        "place": "11 km WNW of Malibu, CA",
+        "time": 1707515247320,
+        "updated": 1708280942073,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci40664632",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci40664632.geojson",
+        "felt": 16888,
+        "cdi": 5.4,
+        "mmi": 4.756,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 1,
+        "sig": 867,
+        "net": "ci",
+        "code": "40664632",
+        "ids": ",ew1707515250,ci40664632,at00s8lz71,us7000ly4f,",
+        "sources": ",ew,ci,at,us,",
+        "types": ",dyfi,focal-mechanism,ground-failure,impact-link,losspager,moment-tensor,nearby-cities,origin,phase-data,scitech-link,shake-alert,shakemap,",
+        "nst": 139,
+        "dmin": 0.0536,
+        "rms": 0.28,
+        "gap": 120,
+        "magType": "mw",
+        "type": "earthquake",
+        "title": "M 4.6 - 11 km WNW of Malibu, CA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.9076667,
+          34.0575,
+          15.28
+        ]
+      },
+      "id": "ci40664632"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.68,
+        "place": "2 km SW of Pāhala, Hawaii",
+        "time": 1707509191660,
+        "updated": 1708373797556,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv74103036",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/hv74103036.geojson",
+        "felt": 5288,
+        "cdi": 6.4,
+        "mmi": 7.332,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 1136,
+        "net": "hv",
+        "code": "74103036",
+        "ids": ",pt24040001,us7000ly2r,hv74103036,",
+        "sources": ",pt,us,hv,",
+        "types": ",dyfi,general-text,ground-failure,losspager,moment-tensor,oaf,origin,phase-data,shakemap,",
+        "nst": 62,
+        "dmin": 0.04276,
+        "rms": 0.11,
+        "gap": 73,
+        "magType": "ml",
+        "type": "earthquake",
+        "title": "M 5.7 - 2 km SW of Pāhala, Hawaii"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.493166666667,
+          19.1866666666667,
+          36.99
+        ]
+      },
+      "id": "hv74103036"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.06,
+        "place": "8 km NW of Prague, Oklahoma",
+        "time": 1706937868269,
+        "updated": 1708320876299,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ok2024cish",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ok2024cish.geojson",
+        "felt": 26426,
+        "cdi": 6.9,
+        "mmi": 7.185,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 1084,
+        "net": "ok",
+        "code": "2024cish",
+        "ids": ",us7000lwmc,ok2024cish,",
+        "sources": ",us,ok,",
+        "types": ",dyfi,ground-failure,losspager,moment-tensor,oaf,origin,phase-data,shakemap,",
+        "nst": 64,
+        "dmin": 0,
+        "rms": 0.25,
+        "gap": 98,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.1 - 8 km NW of Prague, Oklahoma"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.76383333,
+          35.53433333,
+          3
+        ]
+      },
+      "id": "ok2024cish"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.7,
+        "place": "122 km WNW of Aykol, China",
+        "time": 1706567261998,
+        "updated": 1706901174227,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000luuy",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us7000luuy.geojson",
+        "felt": 10,
+        "cdi": 3.1,
+        "mmi": 6.931,
+        "alert": "yellow",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 653,
+        "net": "us",
+        "code": "7000luuy",
+        "ids": ",us7000luuy,",
+        "sources": ",us,",
+        "types": ",dyfi,ground-failure,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 89,
+        "dmin": 1.333,
+        "rms": 0.88,
+        "gap": 35,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 5.7 - 122 km WNW of Aykol, China"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.7155,
+          41.1867,
+          10
+        ]
+      },
+      "id": "us7000luuy"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 6.5,
+        "place": "70 km W of Tarauacá, Brazil",
+        "time": 1706434736538,
+        "updated": 1708016351507,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000lui3",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us7000lui3.geojson",
+        "felt": 4,
+        "cdi": 3.4,
+        "mmi": 2.404,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 651,
+        "net": "us",
+        "code": "7000lui3",
+        "ids": ",us7000lui3,",
+        "sources": ",us,",
+        "types": ",dyfi,ground-failure,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 237,
+        "dmin": 6.527,
+        "rms": 0.86,
+        "gap": 40,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 6.5 - 70 km W of Tarauacá, Brazil"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.4005,
+          -8.236,
+          621.081
+        ]
+      },
+      "id": "us7000lui3"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 6.1,
+        "place": "16 km W of Taxisco, Guatemala",
+        "time": 1706334768402,
+        "updated": 1707570742185,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000luai",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us7000luai.geojson",
+        "felt": 357,
+        "cdi": 7.5,
+        "mmi": 4.928,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 840,
+        "net": "us",
+        "code": "7000luai",
+        "ids": ",us7000luai,",
+        "sources": ",us,",
+        "types": ",dyfi,ground-failure,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 135,
+        "dmin": 0.484,
+        "rms": 0.85,
+        "gap": 57,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 6.1 - 16 km W of Taxisco, Guatemala"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.6187,
+          14.0599,
+          90
+        ]
+      },
+      "id": "us7000luai"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 4.24,
+        "place": "3 km SW of San Bernardino, CA",
+        "time": 1706154199970,
+        "updated": 1707818064345,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci39756418",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/ci39756418.geojson",
+        "felt": 16344,
+        "cdi": 4.2,
+        "mmi": 4.63,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 1,
+        "sig": 697,
+        "net": "ci",
+        "code": "39756418",
+        "ids": ",ew1706154200,ci39756418,at00s7st07,us7000ltmc,",
+        "sources": ",ew,ci,at,us,",
+        "types": ",dyfi,impact-link,losspager,moment-tensor,nearby-cities,origin,phase-data,scitech-link,shake-alert,shakemap,",
+        "nst": 170,
+        "dmin": 0.0193,
+        "rms": 0.22,
+        "gap": 15,
+        "magType": "mw",
+        "type": "earthquake",
+        "title": "M 4.2 - 3 km SW of San Bernardino, CA"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.3115,
+          34.1116667,
+          15.78
+        ]
+      },
+      "id": "ci39756418"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 6.3,
+        "place": "39 km SW of Port-Vila, Vanuatu",
+        "time": 1706020425022,
+        "updated": 1708372555578,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000lt73",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us7000lt73.geojson",
+        "felt": 91,
+        "cdi": 6.1,
+        "mmi": 5.26,
+        "alert": "green",
+        "status": "reviewed",
+        "tsunami": 1,
+        "sig": 666,
+        "net": "us",
+        "code": "7000lt73",
+        "ids": ",at00s7pxsb,pt24023000,us7000lt73,",
+        "sources": ",at,pt,us,",
+        "types": ",dyfi,ground-failure,impact-link,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 248,
+        "dmin": 4.339,
+        "rms": 0.71,
+        "gap": 38,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 6.3 - 39 km SW of Port-Vila, Vanuatu"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          168.0499,
+          -17.9827,
+          31
+        ]
+      },
+      "id": "us7000lt73"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.6,
+        "place": "122 km WNW of Aykol, China",
+        "time": 1705965566542,
+        "updated": 1706052395811,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000lt29",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us7000lt29.geojson",
+        "felt": 4,
+        "cdi": 4.3,
+        "mmi": 6.803,
+        "alert": "yellow",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 652,
+        "net": "us",
+        "code": "7000lt29",
+        "ids": ",us7000lt29,",
+        "sources": ",us,",
+        "types": ",dyfi,ground-failure,losspager,origin,phase-data,shakemap,",
+        "nst": 108,
+        "dmin": 1.303,
+        "rms": 0.84,
+        "gap": 79,
+        "magType": "mb",
+        "type": "earthquake",
+        "title": "M 5.6 - 122 km WNW of Aykol, China"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.724,
+          41.2186,
+          10
+        ]
+      },
+      "id": "us7000lt29"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 5.8,
+        "place": "129 km SSE of Kyzyl-Suu, Kyrgyzstan",
+        "time": 1705947256160,
+        "updated": 1706973892051,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000lt1i",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us7000lt1i.geojson",
+        "felt": 2,
+        "cdi": 7.7,
+        "mmi": 7.244,
+        "alert": "yellow",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 652,
+        "net": "us",
+        "code": "7000lt1i",
+        "ids": ",us7000lt1i,",
+        "sources": ",us,",
+        "types": ",dyfi,ground-failure,losspager,origin,phase-data,shakemap,",
+        "nst": 142,
+        "dmin": 0.454,
+        "rms": 0.53,
+        "gap": 59,
+        "magType": "mb",
+        "type": "earthquake",
+        "title": "M 5.8 - 129 km SSE of Kyzyl-Suu, Kyrgyzstan"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.6211,
+          41.2703,
+          10
+        ]
+      },
+      "id": "us7000lt1i"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "mag": 7,
+        "place": "129 km WNW of Aykol, China",
+        "time": 1705946944408,
+        "updated": 1708181570998,
+        "tz": null,
+        "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000lsze",
+        "detail": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us7000lsze.geojson",
+        "felt": 472,
+        "cdi": 8.7,
+        "mmi": 8.531,
+        "alert": "red",
+        "status": "reviewed",
+        "tsunami": 0,
+        "sig": 2411,
+        "net": "us",
+        "code": "7000lsze",
+        "ids": ",us7000lsze,",
+        "sources": ",us,",
+        "types": ",dyfi,finite-fault,general-text,ground-failure,impact-text,losspager,moment-tensor,origin,phase-data,shakemap,",
+        "nst": 121,
+        "dmin": 0.429,
+        "rms": 0.65,
+        "gap": 29,
+        "magType": "mww",
+        "type": "earthquake",
+        "title": "M 7.0 - 129 km WNW of Aykol, China"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          78.6535,
+          41.2632,
+          13
+        ]
+      },
+      "id": "us7000lsze"
+    }
+  ],
+  "bbox": [
+    -155.49316666667,
+    -17.9827,
+    3,
+    168.0499,
+    41.2703,
+    621.081
+  ]
+}
