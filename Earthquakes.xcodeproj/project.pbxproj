@@ -23,6 +23,7 @@
 		437EECFF2B8447760014A5BE /* MockHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EECFE2B8447760014A5BE /* MockHttpClient.swift */; };
 		439B63C42B8456C20019C0EB /* SpotListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439B63C32B8456C20019C0EB /* SpotListView.swift */; };
 		43CAFADD2B69451300CD47DC /* Earthquake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CAFADC2B69451300CD47DC /* Earthquake.swift */; };
+		43F8C9AE2B8D36D3002A062A /* DecodedEarthquakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F8C9AD2B8D36D3002A062A /* DecodedEarthquakes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		437EECFE2B8447760014A5BE /* MockHttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHttpClient.swift; sourceTree = "<group>"; };
 		439B63C32B8456C20019C0EB /* SpotListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListView.swift; sourceTree = "<group>"; };
 		43CAFADC2B69451300CD47DC /* Earthquake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Earthquake.swift; sourceTree = "<group>"; };
+		43F8C9AD2B8D36D3002A062A /* DecodedEarthquakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodedEarthquakes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				43CAFADC2B69451300CD47DC /* Earthquake.swift */,
+				43F8C9AD2B8D36D3002A062A /* DecodedEarthquakes.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				437E2D942B60ABD900ED6C51 /* ContentView.swift in Sources */,
 				439B63C42B8456C20019C0EB /* SpotListView.swift in Sources */,
 				432A91B52B853E4400FAE8CF /* FakeData.swift in Sources */,
+				43F8C9AE2B8D36D3002A062A /* DecodedEarthquakes.swift in Sources */,
 				4332B43C2B83043400378B2D /* Protocols.swift in Sources */,
 				4320C7682B693DEA00DFBF36 /* HttpClient.swift in Sources */,
 				437E2D922B60ABD900ED6C51 /* EarthquakesApp.swift in Sources */,
