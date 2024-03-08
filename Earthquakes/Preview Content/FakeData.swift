@@ -22,7 +22,8 @@ struct FakeData {
             type: "earthquake",
             title: "M 4.8 - 3 km NNW of El Centro, CA",
             longitude:  -115.5735,
-            latitude: 32.8135
+            latitude: 32.8135,
+            depth: 46.08
         ),
         Earthquake(
             id: UUID().uuidString,
@@ -37,7 +38,8 @@ struct FakeData {
             type: "earthquake",
             title: "M 4.8 - 3 km NNW of El Centro, CA",
             longitude:  -115.5735,
-            latitude: 32.8135
+            latitude: 32.8135,
+            depth: 33.77
         ),
         Earthquake(
             id: UUID().uuidString,
@@ -52,7 +54,8 @@ struct FakeData {
             type: "earthquake",
             title: "M 4.8 - 3 km NNW of El Centro, CA",
             longitude:  -115.5735,
-            latitude: 32.8135
+            latitude: 32.8135,
+            depth: 36.311
         ),
         Earthquake(
             id: UUID().uuidString,
@@ -67,7 +70,8 @@ struct FakeData {
             type: "earthquake",
             title: "M 4.8 - 3 km NNW of El Centro, CA",
             longitude:  -115.5735,
-            latitude: 32.8135
+            latitude: 32.8135,
+            depth: 57.745
         )
     ]
 }

@@ -34,7 +34,8 @@ extension EarthquakeViewModel {
                     type: feature.properties.type,
                     title: feature.properties.title,
                     longitude: feature.geometry.coordinates[0],
-                    latitude: feature.geometry.coordinates[1])
+                    latitude: feature.geometry.coordinates[1],
+                    depth: feature.geometry.coordinates[2])
                 result.append(earthquake)
             }
             earthquakes = result

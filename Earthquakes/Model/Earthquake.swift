@@ -21,4 +21,5 @@ struct Earthquake: Identifiable {
     let title: String
     let longitude: Double
     let latitude: Double
+    let depth: Double
 }
