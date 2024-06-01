@@ -8,12 +8,19 @@
 import Foundation
 
 struct FakeData {
+    private static let fakeDates: [Date] = [
+        Date.now.addingTimeInterval(-(5 * 60)),
+        Date.now.addingTimeInterval(-(10 * 60)),
+        Date.now.addingTimeInterval(-(18 * 60)),
+        Date.dateCreator(year: 2024, month: 3, day: 14)
+    ]
+
     static let earthquakes: [Earthquake] = [
         Earthquake(
             id: UUID().uuidString,
             magnitude: 4.81,
             place: "3 km NNW of El Centro, CA",
-            time: Date.now,
+            time: fakeDates[0],
             updated: Date.now,
             url: "https://earthquake.usgs.gov/earthquakes/eventpage/ci40666288",
             alert: "green",
@@ -29,7 +36,7 @@ struct FakeData {
             id: UUID().uuidString,
             magnitude: 4.81,
             place: "3 km NNW of El Centro, CA",
-            time: Date.now,
+            time: fakeDates[1],
             updated: Date.now,
             url: "https://earthquake.usgs.gov/earthquakes/eventpage/ci40666288",
             alert: "green",
@@ -45,7 +52,7 @@ struct FakeData {
             id: UUID().uuidString,
             magnitude: 4.81,
             place: "3 km NNW of El Centro, CA",
-            time: Date.now,
+            time: fakeDates[2],
             updated: Date.now,
             url: "https://earthquake.usgs.gov/earthquakes/eventpage/ci40666288",
             alert: "green",
@@ -61,7 +68,7 @@ struct FakeData {
             id: UUID().uuidString,
             magnitude: 4.81,
             place: "3 km NNW of El Centro, CA",
-            time: Date.now,
+            time: fakeDates[3],
             updated: Date.now,
             url: "https://earthquake.usgs.gov/earthquakes/eventpage/ci40666288",
             alert: "green",

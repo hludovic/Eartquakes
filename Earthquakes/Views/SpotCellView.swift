@@ -12,19 +12,32 @@ struct SpotCellView: View {
 
     var body: some View {
         HStack {
-            Text("M - " + String(format: "%.1f", 4.3))
-                .frame(width: 90, height: 90, alignment: .center)
-                .background { Color(.blue).clipShape(Circle()) }
-//                .background { Color(.red) }
+            Text("M " + String(format: "%.1f", content.magnitude))
+                .minimumScaleFactor(0.9)
+                .lineLimit(2)
+                .font(.title)
+                .frame(width: 90, height: 70, alignment: .center)
+                .background { RoundedRectangle(cornerRadius: 25.0)
+                        .fill(.gray)
+                        .frame(width: 90, height: 70)
+                }
             VStack {
-                Text(content.place)
-                Text(String(format: "%.1f", content.depth) + " Km")
+                Group {
+                    Text(content.place)
+                        .font(.title2)
+                    HStack {
+                        Text("Depth: " + String(format: "%.1f", content.depth) + " Km")
+                        Text(content.time.timeAgo())
+                            .padding(.leading, 5)
+                    }
+                }
+                .bold(content.time.timeIntervalSinceNow >= -900)
             }
+            
             Spacer()
         }
-        .frame(height: 90)
+        .frame(height: 70)
         .frame(maxWidth: .infinity)
-        .border(Color.red)
         .padding()
     }
 }
