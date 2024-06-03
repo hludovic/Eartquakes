@@ -21,14 +21,19 @@ struct SpotCellView: View {
                         .fill(.gray)
                         .frame(width: 90, height: 70)
                 }
-            VStack {
+            VStack(alignment: .leading) {
                 Group {
                     Text(content.place)
                         .font(.title2)
                     HStack {
-                        Text("Depth: " + String(format: "%.1f", content.depth) + " Km")
+                        Image(systemName: "arrow.down.and.line.horizontal.and.arrow.up")
+                        Text("A depth of " + String(format: "%.1f", content.depth) + " Km")
+                            .offset(x: -5)
+
+                        Image(systemName: "clock")
+                            .padding(.leading)
                         Text(content.time.timeAgo())
-                            .padding(.leading, 5)
+                            .offset(x: -5)
                     }
                 }
                 .bold(content.time.timeIntervalSinceNow >= -900)
