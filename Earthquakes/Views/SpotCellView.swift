@@ -32,13 +32,15 @@ struct SpotCellView: View {
                     }
                 }
                 .bold(content.time.timeIntervalSinceNow >= -900)
+                .minimumScaleFactor(0.9)
+                .lineLimit(1)
+
             }
             
             Spacer()
         }
         .frame(height: 70)
         .frame(maxWidth: .infinity)
-        .padding()
     }
 }
 
