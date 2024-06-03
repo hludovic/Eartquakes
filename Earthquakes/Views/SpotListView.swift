@@ -11,8 +11,10 @@ struct SpotListView: View {
     @Environment(EarthquakeViewModel.self) private var viewModel
 
     var body: some View {
+
         VStack {
             SearchFiltersView()
+                .environment(viewModel)
                 .padding(.top)
 
             List {

@@ -8,65 +8,44 @@
 import SwiftUI
 
 struct SearchFiltersView: View {
+    @Environment(EarthquakeViewModel.self) private var viewModel
 
     var body: some View {
+        @Bindable var viewModel = viewModel
+
         HStack {
             Menu("Magnitude", systemImage: "waveform.badge.exclamationmark") {
-                Button(action: selection) {
-                    Label("All records", systemImage: "")
+                ForEach(SearchFilterContent.Magnitude.allCases) { item in
+                    Button(action: {viewModel.selectedStrength = item}) {
+                        Label(
+                            item.rawValue,
+                            systemImage: viewModel.selectedStrength == item ? "checkmark" : ""
+                        )
+                    }
+                    .disabled(false)
                 }
-                .disabled(false)
-
-                Button(action: selection) {
-                    Label("Over Magnitude 1", systemImage: "checkmark")
-                }
-                .disabled(false)
-
-                Button(action: selection) {
-                    Label("Over Magnitude 2.5", systemImage: "")
-                }
-                .disabled(false)
-
-                Button(action: selection) {
-                    Label("Over Magnitude 4.5", systemImage: "")
-                }
-                .disabled(false)
-
-                Button(action: selection) {
-                    Label("Only the Significants", systemImage: "")
-                }
-                .disabled(false)
             }
 
             Menu("Date", systemImage: "calendar") {
-                Button(action: selection) {
-                    Label("Since One Hour", systemImage: "")
+                ForEach(SearchFilterContent.Period.allCases) { item in
+                    Button(action: {viewModel.selectedPeriod = item}) {
+                        Label(
+                            item.rawValue,
+                            systemImage: viewModel.selectedPeriod == item ? "checkmark" : ""
+                        )
+                    }
+                    .disabled(false)
                 }
-                .disabled(true)
-
-                Button(action: selection) {
-                    Label("Since One Day", systemImage: "")
-                }
-                .disabled(false)
-
-                Button(action: selection) {
-                    Label("Since One Week", systemImage: "checkmark")
-                }
-                .disabled(false)
-
-                Button(action: selection) {
-                    Label("Since One Month", systemImage: "")
-                }
-                .disabled(false)
             }
+
             Spacer()
 
-            Button(action: selection ) {
+            Button(action: { viewModel.earthquakes.reverse() } ) {
                 Label("Invert List", systemImage: "arrow.up.arrow.down")
                     .labelStyle(.iconOnly)
             }
 
-            Button(action: selection ) {
+            Button(action: { Task { await viewModel.fetch() } } ) {
                 Label("Search", systemImage: "text.magnifyingglass")
                     .labelStyle(.iconOnly)
             }
@@ -74,10 +53,11 @@ struct SearchFiltersView: View {
         .padding(.horizontal, 20)
         .padding(.vertical, 10)
     }
-
-    func selection() {print("hello") }
 }
 
 #Preview {
-    SearchFiltersView()
+    let viewModel = EarthquakeViewModel()
+    viewModel.earthquakes = FakeData.earthquakes
+    return SearchFiltersView()
+        .environment(viewModel)
 }

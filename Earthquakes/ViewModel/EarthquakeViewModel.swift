@@ -10,8 +10,8 @@ import Observation
 
 @Observable final class EarthquakeViewModel {
     var earthquakes: [Earthquake] = []
-    var selectedPeriod: ApiJsonFeeds.Period = .aMonth
-    var selectedStrength: ApiJsonFeeds.Strength = .significant
+    var selectedPeriod: SearchFilterContent.Period = .aDay
+    var selectedStrength: SearchFilterContent.Magnitude = .overMag4_5
     var errorMessage: String = ""
     let httpClient: Networking
 
@@ -19,7 +19,7 @@ import Observation
 
     func fetch() async {
         do {
-            try await fetchEarthquakes(since: selectedPeriod, strength: selectedStrength)
+            try await fetchEarthquakes(since: paramPeriod, strength: paramStrength)
         } catch (let error) {
             errorMessage = error.localizedDescription
         }
@@ -27,6 +27,35 @@ import Observation
 }
 
 private extension EarthquakeViewModel {
+
+    var paramPeriod: ApiJsonFeeds.Period {
+        switch selectedPeriod {
+        case .oneHour:
+            return .oneHour
+        case .aDay:
+            return .aDay
+        case .aWeek:
+            return .aWeek
+        case .aMonth:
+            return .aMonth
+        }
+    }
+
+    var paramStrength: ApiJsonFeeds.Strength {
+        switch selectedStrength {
+        case .all:
+            return .all
+        case .overMag1:
+            return .overMag1
+        case .overMag2_5:
+            return .overMag2_5
+        case .overMag4_5:
+            return .overMag4_5
+        case .significant:
+            return .significant
+        }
+    }
+
 
     func fetchEarthquakes(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) async throws {
         let parameter = "\(strength.rawValue)_\(period.rawValue)"
