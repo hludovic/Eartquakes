@@ -24,21 +24,16 @@ import Observation
             errorMessage = error.localizedDescription
         }
     }
-
 }
 
 private extension EarthquakeViewModel {
 
     func fetchEarthquakes(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) async throws {
-        guard let url = getGeoJSONFeedUrl(since: period, strength: strength) else { throw HttpError.invalidURL}
+        let parameter = "\(strength.rawValue)_\(period.rawValue)"
+        let urlString: String = ApiJsonFeeds.baseURL + ApiJsonFeeds.endpoint + "/" + parameter + "." + ApiJsonFeeds.FileFormat.json
+        guard let url = URL(string: urlString) else { throw HttpError.invalidURL}
         let decodedEarthquakes: DecodedEarthquakes = try await httpClient.fetch(url: url, dateDecodingStrategy: .millisecondsSince1970)
         earthquakes = decodedEarthquakes.earthquakes
-    }
-
-    func getGeoJSONFeedUrl(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) -> URL? {
-        let parameter = ApiJsonFeeds.parameters(period: period, strength: strength)
-        let urlString: String = ApiJsonFeeds.baseURL + ApiJsonFeeds.endpoint + "/" + parameter + "." + ApiJsonFeeds.FileFormat.json
-        return URL(string: urlString)
     }
 }
 

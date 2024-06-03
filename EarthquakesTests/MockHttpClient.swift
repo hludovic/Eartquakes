@@ -23,8 +23,7 @@ class MockHttpClient: Networking {
     }
 
     func getFileData(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) throws ->  Data {
-        let parameter = ApiJsonFeeds.parameters(period: period, strength: strength)
-        print(parameter)
+        let parameter = "\(strength.rawValue)_\(period.rawValue)"
         let bundleDoingTest = Bundle(for: type(of: self ))
         let path = bundleDoingTest.path(forResource: parameter, ofType: "geojson")
         let data = try Data(contentsOf: URL(filePath: path!))
