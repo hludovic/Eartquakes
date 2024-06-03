@@ -31,17 +31,19 @@ final class EarthquakesTests: XCTestCase {
         mockHttpClient.throwError = false
         mockHttpClient.mockedData = mockedData
 
-        try await viewModel.fetchEarthquakes(since: .aMonth, strength: .significant)
+        viewModel.selectedPeriod = .aMonth
+        viewModel.selectedStrength = .significant
+        await viewModel.fetch()
         XCTAssertEqual(viewModel.earthquakes.count, 12)
     }
 
     func testFetchingDataWithError() async throws {
         mockHttpClient.throwError = true
 
-        do {
-            try await viewModel.fetchEarthquakes(since: .aMonth, strength: .significant)
-        } catch let error {
-            XCTAssertEqual(error as! HttpError, HttpError.badResponse)
-        }
+        viewModel.selectedPeriod = .aMonth
+        viewModel.selectedStrength = .significant
+        await viewModel.fetch()
+
+        XCTAssertEqual(viewModel.errorMessage, HttpError.badResponse.localizedDescription)
     }
 }

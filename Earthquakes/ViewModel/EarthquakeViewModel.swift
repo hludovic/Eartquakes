@@ -6,21 +6,34 @@
 //
 
 import Foundation
+import Observation
 
-class EarthquakeViewModel: ObservableObject {
-    @Published var earthquakes: [Earthquake] = []
+@Observable final class EarthquakeViewModel {
+    var earthquakes: [Earthquake] = []
+    var selectedPeriod: ApiJsonFeeds.Period = .aMonth
+    var selectedStrength: ApiJsonFeeds.Strength = .significant
+    var errorMessage: String = ""
     let httpClient: Networking
 
     init(httpClient: Networking = HttpClient.shared) { self.httpClient = httpClient }
+
+    func fetch() async {
+        do {
+            try await fetchEarthquakes(since: selectedPeriod, strength: selectedStrength)
+        } catch (let error) {
+            errorMessage = error.localizedDescription
+        }
+    }
+
+}
+
+private extension EarthquakeViewModel {
 
     func fetchEarthquakes(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) async throws {
         guard let url = getGeoJSONFeedUrl(since: period, strength: strength) else { throw HttpError.invalidURL}
         let decodedEarthquakes: DecodedEarthquakes = try await httpClient.fetch(url: url, dateDecodingStrategy: .millisecondsSince1970)
         earthquakes = decodedEarthquakes.earthquakes
     }
-}
-
-private extension EarthquakeViewModel {
 
     func getGeoJSONFeedUrl(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) -> URL? {
         let parameter = ApiJsonFeeds.parameters(period: period, strength: strength)

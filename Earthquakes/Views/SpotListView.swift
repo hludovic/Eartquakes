@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct SpotListView: View {
-    @State var content: [Earthquake]
+    @Environment(EarthquakeViewModel.self) private var viewModel
 
     var body: some View {
         List {
-            ForEach(content) { content in
+            ForEach(viewModel.earthquakes) { content in
                 SpotCellView(content: content)
             }
         }
+        .refreshable { Task { await viewModel.fetch() } }
     }
 }
 
 #Preview {
-    
-    SpotListView(content: FakeData.earthquakes)
+    let viewModel = EarthquakeViewModel()
+    viewModel.earthquakes = FakeData.earthquakes
+    return SpotListView()
+        .environment(viewModel)
 }
