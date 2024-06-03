@@ -11,18 +11,28 @@ struct SpotListView: View {
     @Environment(EarthquakeViewModel.self) private var viewModel
 
     var body: some View {
-        List {
-            ForEach(viewModel.earthquakes) { content in
-                SpotCellView(content: content)
+        VStack {
+            SearchFiltersView()
+                .padding(.top)
+
+            List {
+
+                ForEach(viewModel.earthquakes) { content in
+                    SpotCellView(content: content)
+                }
             }
+            .listStyle(.plain)
+            .refreshable { Task { await viewModel.fetch() } }
         }
-        .refreshable { Task { await viewModel.fetch() } }
+        .navigationTitle("Earthquakes")
     }
 }
 
 #Preview {
-    let viewModel = EarthquakeViewModel()
-    viewModel.earthquakes = FakeData.earthquakes
-    return SpotListView()
-        .environment(viewModel)
+    NavigationStack {
+        let viewModel = EarthquakeViewModel()
+        viewModel.earthquakes = FakeData.earthquakes
+        return SpotListView()
+            .environment(viewModel)
+    }
 }

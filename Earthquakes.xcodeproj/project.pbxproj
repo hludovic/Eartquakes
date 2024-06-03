@@ -25,6 +25,7 @@
 		439B63C42B8456C20019C0EB /* SpotListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439B63C32B8456C20019C0EB /* SpotListView.swift */; };
 		43CAFADD2B69451300CD47DC /* Earthquake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CAFADC2B69451300CD47DC /* Earthquake.swift */; };
 		43F8C9AE2B8D36D3002A062A /* DecodedEarthquakes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F8C9AD2B8D36D3002A062A /* DecodedEarthquakes.swift */; };
+		43FBAD8A2C0D866800639A19 /* SearchFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43FBAD892C0D866800639A19 /* SearchFiltersView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		439B63C32B8456C20019C0EB /* SpotListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListView.swift; sourceTree = "<group>"; };
 		43CAFADC2B69451300CD47DC /* Earthquake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Earthquake.swift; sourceTree = "<group>"; };
 		43F8C9AD2B8D36D3002A062A /* DecodedEarthquakes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecodedEarthquakes.swift; sourceTree = "<group>"; };
+		43FBAD892C0D866800639A19 /* SearchFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFiltersView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			children = (
 				437E2D932B60ABD900ED6C51 /* ContentView.swift */,
 				439B63C32B8456C20019C0EB /* SpotListView.swift */,
+				43FBAD892C0D866800639A19 /* SearchFiltersView.swift */,
 				436522702B8C212500B7FB96 /* SpotCellView.swift */,
 			);
 			path = Views;
@@ -285,6 +288,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43FBAD8A2C0D866800639A19 /* SearchFiltersView.swift in Sources */,
 				43CAFADD2B69451300CD47DC /* Earthquake.swift in Sources */,
 				432AA4C92B806EDC005432E7 /* EarthquakeViewModel.swift in Sources */,
 				435BF3CC2C0BDE3F007ED751 /* Date+Extension.swift in Sources */,
