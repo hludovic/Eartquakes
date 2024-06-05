@@ -11,11 +11,8 @@ struct SpotListView: View {
     @Environment(EarthquakeViewModel.self) private var viewModel
 
     var body: some View {
-
-        VStack {
-            SearchFiltersView()
-                .environment(viewModel)
-            List {
+        List {
+            Section {
                 ForEach(viewModel.earthquakes) { content in
                     NavigationLink {
                         Text("Content")
@@ -23,11 +20,15 @@ struct SpotListView: View {
                         SpotCellView(content: content)
                     }
                 }
+            } header: {
+                SearchFiltersView()
+                    .environment(viewModel)
             }
-            .listStyle(.plain)
-            .refreshable { Task { await viewModel.fetch() } }
         }
+        .listStyle(.plain)
         .navigationTitle("Earthquakes")
+        .navigationBarTitleDisplayMode(.inline)
+        .refreshable { Task { await viewModel.fetch() } }
     }
 }
 

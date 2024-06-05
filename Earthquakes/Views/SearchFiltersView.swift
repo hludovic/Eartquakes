@@ -17,41 +17,37 @@ struct SearchFiltersView: View {
             Menu("Magnitude", systemImage: "waveform.badge.exclamationmark") {
                 ForEach(SearchFilterContent.Magnitude.allCases) { item in
                     Button(action: {viewModel.selectedStrength = item}) {
-                        Label(
-                            item.rawValue,
-                            systemImage: viewModel.selectedStrength == item ? "checkmark" : ""
-                        )
+                        if viewModel.selectedStrength == item {
+                            Label(item.rawValue, systemImage: "checkmark")
+                        } else {
+                            Text(item.rawValue)
+                        }
                     }
                     .disabled(false)
                 }
             }
-
             Menu("Date", systemImage: "calendar") {
                 ForEach(SearchFilterContent.Period.allCases) { item in
                     Button(action: {viewModel.selectedPeriod = item}) {
-                        Label(
-                            item.rawValue,
-                            systemImage: viewModel.selectedPeriod == item ? "checkmark" : ""
-                        )
+                        if viewModel.selectedPeriod == item {
+                            Label(item.rawValue, systemImage: "checkmark")
+                        } else {
+                            Text(item.rawValue)
+                        }
                     }
                     .disabled(false)
                 }
             }
-
             Spacer()
-
             Button(action: { viewModel.earthquakes.reverse() } ) {
                 Label("Invert List", systemImage: "arrow.up.arrow.down")
                     .labelStyle(.iconOnly)
             }
-
             Button(action: { Task { await viewModel.fetch() } } ) {
                 Label("Search", systemImage: "text.magnifyingglass")
                     .labelStyle(.iconOnly)
             }
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 10)
     }
 }
 

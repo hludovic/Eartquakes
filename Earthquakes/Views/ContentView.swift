@@ -15,7 +15,9 @@ struct ContentView: View {
             SpotListView()
                 .environment(viewModel)
         } detail: {
-            Text("Map")
+            MapView()
+                .environment(viewModel)
+                .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

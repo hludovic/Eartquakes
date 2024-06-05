@@ -7,6 +7,7 @@
 
 import Foundation
 import Observation
+import MapKit
 
 @Observable final class EarthquakeViewModel {
     var earthquakes: [Earthquake] = []
@@ -14,6 +15,21 @@ import Observation
     var selectedStrength: SearchFilterContent.Magnitude = .overMag4_5
     var errorMessage: String = ""
     let httpClient: Networking
+    var mapLocations: [MapLocation] {
+        guard !earthquakes.isEmpty else { return [] }
+        var locations: [MapLocation] = []
+        for earthquake in earthquakes {
+            var mapLocation = MapLocation(
+                name: earthquake.title,
+                coordinate: CLLocationCoordinate2D(
+                    latitude: earthquake.latitude,
+                    longitude: earthquake.longitude
+                )
+            )
+            locations.append(mapLocation)
+        }
+        return locations
+    }
 
     init(httpClient: Networking = HttpClient.shared) { self.httpClient = httpClient }
 
