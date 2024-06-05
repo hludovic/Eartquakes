@@ -15,12 +15,13 @@ struct SpotListView: View {
         VStack {
             SearchFiltersView()
                 .environment(viewModel)
-                .padding(.top)
-
             List {
-
                 ForEach(viewModel.earthquakes) { content in
-                    SpotCellView(content: content)
+                    NavigationLink {
+                        Text("Content")
+                    } label: {
+                        SpotCellView(content: content)
+                    }
                 }
             }
             .listStyle(.plain)

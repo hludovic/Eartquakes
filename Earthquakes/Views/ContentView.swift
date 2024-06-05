@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var viewModel = EarthquakeViewModel()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationSplitView {
+            SpotListView()
+                .environment(viewModel)
+        } detail: {
+            Text("Map")
         }
-        .padding()
     }
 }
 
 #Preview {
-    ContentView()
+    let viewModel = EarthquakeViewModel()
+    viewModel.earthquakes = FakeData.earthquakes
+    return ContentView(viewModel: viewModel)
 }
