@@ -23,7 +23,6 @@ struct SearchFiltersView: View {
                             Text(item.rawValue)
                         }
                     }
-                    .disabled(false)
                 }
             }
             Menu("Date", systemImage: "calendar") {
@@ -35,7 +34,6 @@ struct SearchFiltersView: View {
                             Text(item.rawValue)
                         }
                     }
-                    .disabled(false)
                 }
             }
             Spacer()

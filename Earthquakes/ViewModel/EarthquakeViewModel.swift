@@ -13,13 +13,13 @@ import MapKit
     var earthquakes: [Earthquake] = []
     var selectedPeriod: SearchFilterContent.Period = .aDay
     var selectedStrength: SearchFilterContent.Magnitude = .overMag4_5
-    var errorMessage: String = ""
+    var errorMessage: String? = nil
     let httpClient: Networking
     var mapLocations: [MapLocation] {
         guard !earthquakes.isEmpty else { return [] }
         var locations: [MapLocation] = []
         for earthquake in earthquakes {
-            var mapLocation = MapLocation(
+            let mapLocation = MapLocation(
                 name: earthquake.title,
                 coordinate: CLLocationCoordinate2D(
                     latitude: earthquake.latitude,
@@ -34,11 +34,22 @@ import MapKit
     init(httpClient: Networking = HttpClient.shared) { self.httpClient = httpClient }
 
     func fetch() async {
+        guard canFetch() else { return errorMessage = "ERROR" }
         do {
             try await fetchEarthquakes(since: paramPeriod, strength: paramStrength)
-        } catch (let error) {
-            errorMessage = error.localizedDescription
+        } catch {
+            errorMessage = "ERROR"
         }
+    }
+
+    func canFetch() -> Bool {
+        if selectedPeriod == .aMonth {
+            if selectedStrength == .all {return false }
+            if selectedStrength == .overMag1 { return false }
+            if selectedStrength == .overMag2_5 { return false }
+            if selectedStrength == .overMag4_5 { return false }
+        }
+        return true
     }
 }
 
@@ -71,7 +82,6 @@ private extension EarthquakeViewModel {
             return .significant
         }
     }
-
 
     func fetchEarthquakes(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) async throws {
         let parameter = "\(strength.rawValue)_\(period.rawValue)"
