@@ -14,9 +14,7 @@ struct SpotListView: View {
         List {
             Section {
                 ForEach(viewModel.earthquakes) { content in
-                    NavigationLink {
-                        Text("Content")
-                    } label: {
+                    Button(action: {viewModel.buttonLocationPresed(earthquake: content)}) {
                         SpotCellView(content: content)
                     }
                 }

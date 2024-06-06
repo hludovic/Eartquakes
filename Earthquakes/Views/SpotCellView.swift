@@ -9,17 +9,18 @@ import SwiftUI
 
 struct SpotCellView: View {
     @State var content: Earthquake
-
+    
     var body: some View {
+        
         HStack {
             Text("M " + String(format: "%.1f", content.magnitude))
                 .minimumScaleFactor(0.9)
                 .lineLimit(2)
                 .font(.callout)
-                .frame(width: 50, height: 50, alignment: .center)
+                .frame(width: 50, height: 45, alignment: .center)
                 .background { RoundedRectangle(cornerRadius: 10.0)
                         .fill(.gray)
-                        .frame(width: 55, height: 50)
+                        .frame(width: 50, height: 45)
                 }
             VStack(alignment: .leading) {
                 Group {
@@ -39,9 +40,11 @@ struct SpotCellView: View {
             }
             Spacer()
         }
+        .foregroundStyle(.foreground)
         .minimumScaleFactor(0.9)
         .frame(height: 70)
         .frame(maxWidth: .infinity)
+        
     }
 }
 

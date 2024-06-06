@@ -8,6 +8,7 @@
 import Foundation
 import Observation
 import MapKit
+import SwiftUI
 
 @Observable final class EarthquakeViewModel {
     var earthquakes: [Earthquake] = []
@@ -15,6 +16,7 @@ import MapKit
     var selectedStrength: SearchFilterContent.Magnitude = .overMag4_5
     var errorMessage: String? = nil
     let httpClient: Networking
+    var mapPosition: MapCameraPosition = .automatic
     var mapLocations: [MapLocation] {
         guard !earthquakes.isEmpty else { return [] }
         var locations: [MapLocation] = []
@@ -51,6 +53,23 @@ import MapKit
         }
         return true
     }
+
+    func buttonLocationPresed(earthquake: Earthquake) {
+        let position = MapCameraPosition.region(
+            MKCoordinateRegion(
+                center: CLLocationCoordinate2D(
+                    latitude: earthquake.latitude,
+                    longitude: earthquake.longitude
+                ),
+                span: MKCoordinateSpan(
+                    latitudeDelta: 5,
+                    longitudeDelta: 5
+                )
+            )
+        )
+        withAnimation { self.mapPosition = position }
+    }
+
 }
 
 private extension EarthquakeViewModel {
@@ -88,7 +107,7 @@ private extension EarthquakeViewModel {
         let urlString: String = ApiJsonFeeds.baseURL + ApiJsonFeeds.endpoint + "/" + parameter + "." + ApiJsonFeeds.FileFormat.json
         guard let url = URL(string: urlString) else { throw HttpError.invalidURL}
         let decodedEarthquakes: DecodedEarthquakes = try await httpClient.fetch(url: url, dateDecodingStrategy: .millisecondsSince1970)
-        earthquakes = decodedEarthquakes.earthquakes
+        withAnimation { earthquakes = decodedEarthquakes.earthquakes }
     }
 }
 

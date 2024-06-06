@@ -12,7 +12,8 @@ struct MapView: View {
     @Environment(EarthquakeViewModel.self) private var viewModel
 
     var body: some View {
-        Map(interactionModes: [.pitch, .zoom, .pan]) {
+        @Bindable var viewModel = viewModel
+        Map(position: $viewModel.mapPosition, interactionModes: [.pitch, .zoom, .pan]) {
             ForEach(viewModel.mapLocations) { mapLocation in
                 Annotation(mapLocation.name, coordinate: mapLocation.coordinate) {
                     ZStack {
