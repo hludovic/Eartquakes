@@ -35,7 +35,6 @@ struct ApiJsonFeeds {
 struct SearchFilterContent {
     enum Magnitude: String, CaseIterable, Identifiable {
         var id: Self { return self }
-
         case all = "All records"
         case overMag1 = "Over Magnitude 1"
         case overMag2_5 = "Over Magnitude 2.5"
@@ -45,12 +44,9 @@ struct SearchFilterContent {
 
     enum Period: String, CaseIterable, Identifiable {
         var id: Self { return self }
-        
         case oneHour = "Since One Hour"
         case aDay = "Since One Day"
         case aWeek = "Since A Week"
         case aMonth = "Since A Month"
-
-
     }
 }
