@@ -22,6 +22,7 @@
 		437EECF62B84409E0014A5BE /* EarthquakesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EECF52B84409E0014A5BE /* EarthquakesTests.swift */; };
 		437EECFD2B84420B0014A5BE /* significant_month.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 43186EE02B843DA90078E2D0 /* significant_month.geojson */; };
 		437EECFF2B8447760014A5BE /* MockHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EECFE2B8447760014A5BE /* MockHttpClient.swift */; };
+		439150E52C16762F00877ABB /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439150E42C16762F00877ABB /* EmptyResultView.swift */; };
 		439B63C42B8456C20019C0EB /* SpotListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439B63C32B8456C20019C0EB /* SpotListView.swift */; };
 		43CAFADD2B69451300CD47DC /* Earthquake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CAFADC2B69451300CD47DC /* Earthquake.swift */; };
 		43F667122C0FF65D009626E7 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F667112C0FF65D009626E7 /* MapView.swift */; };
@@ -58,6 +59,7 @@
 		437EECF32B84409E0014A5BE /* EarthquakesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EarthquakesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		437EECF52B84409E0014A5BE /* EarthquakesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakesTests.swift; sourceTree = "<group>"; };
 		437EECFE2B8447760014A5BE /* MockHttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHttpClient.swift; sourceTree = "<group>"; };
+		439150E42C16762F00877ABB /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
 		439B63C32B8456C20019C0EB /* SpotListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListView.swift; sourceTree = "<group>"; };
 		43CAFADC2B69451300CD47DC /* Earthquake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Earthquake.swift; sourceTree = "<group>"; };
 		43F667112C0FF65D009626E7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				437E2D932B60ABD900ED6C51 /* ContentView.swift */,
 				439B63C32B8456C20019C0EB /* SpotListView.swift */,
 				43FBAD892C0D866800639A19 /* SearchFiltersView.swift */,
+				439150E42C16762F00877ABB /* EmptyResultView.swift */,
 				436522702B8C212500B7FB96 /* SpotCellView.swift */,
 				43F667112C0FF65D009626E7 /* MapView.swift */,
 			);
@@ -297,6 +300,7 @@
 				43FBAD8A2C0D866800639A19 /* SearchFiltersView.swift in Sources */,
 				43CAFADD2B69451300CD47DC /* Earthquake.swift in Sources */,
 				432AA4C92B806EDC005432E7 /* EarthquakeViewModel.swift in Sources */,
+				439150E52C16762F00877ABB /* EmptyResultView.swift in Sources */,
 				43F667142C10081A009626E7 /* MapLocation.swift in Sources */,
 				435BF3CC2C0BDE3F007ED751 /* Date+Extension.swift in Sources */,
 				437E2D942B60ABD900ED6C51 /* ContentView.swift in Sources */,

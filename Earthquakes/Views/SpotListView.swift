@@ -11,22 +11,37 @@ struct SpotListView: View {
     @Environment(EarthquakeViewModel.self) private var viewModel
 
     var body: some View {
+        @Bindable var viewModel = viewModel
+
         List {
             Section {
-                ForEach(viewModel.earthquakes) { content in
-                    Button(action: {viewModel.buttonLocationPresed(earthquake: content)}) {
-                        SpotCellView(content: content)
+                if viewModel.earthquakes.isEmpty {
+                    EmptyResultView()
+                } else {
+                    ForEach(viewModel.earthquakes) { content in
+                        Button(action: {viewModel.buttonLocationPresed(earthquake: content)}) {
+                            SpotCellView(content: content)
+                        }
                     }
                 }
             } header: {
-                SearchFiltersView()
-                    .environment(viewModel)
+                if viewModel.searchButtonActivated {
+                    SearchFiltersView()
+                        .environment(viewModel)
+                }
             }
         }
         .listStyle(.plain)
         .navigationTitle("Earthquakes")
         .navigationBarTitleDisplayMode(.inline)
         .refreshable { Task { await viewModel.fetch() } }
+        .toolbar(content: {
+            ToolbarItem(placement: .automatic) {
+                Toggle("Search", systemImage: "text.magnifyingglass", isOn: $viewModel.searchButtonActivated.animation())
+            }
+        })
+        Text("\(viewModel.bottomListCountString)")
+
     }
 }
 
