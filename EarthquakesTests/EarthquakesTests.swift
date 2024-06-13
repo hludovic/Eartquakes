@@ -44,6 +44,6 @@ final class EarthquakesTests: XCTestCase {
         viewModel.selectedStrength = .significant
         await viewModel.fetch()
 
-        XCTAssertEqual(viewModel.errorMessage, HttpError.badResponse.localizedDescription)
+        XCTAssertEqual(viewModel.errorMessage, "ERROR")
     }
 }

@@ -13,20 +13,30 @@ struct MapView: View {
 
     var body: some View {
         @Bindable var viewModel = viewModel
-        Map(position: $viewModel.mapPosition, interactionModes: [.pitch, .zoom, .pan]) {
-            ForEach(viewModel.mapLocations) { mapLocation in
-                Annotation(mapLocation.name, coordinate: mapLocation.coordinate) {
-                    ZStack {
-                        Circle()
-                            .foregroundStyle(Color.black)
-                            .frame(width: 21, height: 21)
-                        Circle()
-                            .foregroundStyle(Color.red)
-                            .frame(width: 20, height: 20)
+
+        ZStack(alignment: .topTrailing) {
+
+            Map(position: $viewModel.mapPosition, interactionModes: [.pitch, .zoom, .pan]) {
+                ForEach(viewModel.mapLocations) { mapLocation in
+                    Annotation(mapLocation.name, coordinate: mapLocation.coordinate) {
+                        ZStack {
+                            Circle()
+                                .foregroundStyle(Color.black)
+                                .frame(width: 21, height: 21)
+                            Circle()
+                                .foregroundStyle(Color.red)
+                                .frame(width: 20, height: 20)
+                        }
+                        .opacity(0.5)
                     }
-                    .opacity(0.5)
                 }
             }
+            RoundedRectangle(cornerRadius: 25.0)
+                .frame(width: 100, height: 100, alignment: .center)
+                .foregroundStyle(Color.black)
+                .opacity(0.5)
+                .shadow(color: .black, radius: 10, x: 0.0, y: 0.0)
+                .padding()
         }
         .navigationTitle(
             "Earthquakes \(viewModel.selectedStrength.rawValue.lowercased()) recorded \(viewModel.selectedPeriod.rawValue.lowercased())"
