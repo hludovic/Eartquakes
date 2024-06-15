@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43168DD52C1D449B00E3EE16 /* MapMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43168DD42C1D449B00E3EE16 /* MapMenuView.swift */; };
 		4320C7682B693DEA00DFBF36 /* HttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4320C7672B693DEA00DFBF36 /* HttpClient.swift */; };
 		4320C76B2B693EB000DFBF36 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4320C76A2B693EB000DFBF36 /* Constants.swift */; };
 		432A91B52B853E4400FAE8CF /* FakeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 432A91B42B853E4400FAE8CF /* FakeData.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		43168DD42C1D449B00E3EE16 /* MapMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapMenuView.swift; sourceTree = "<group>"; };
 		43186EE02B843DA90078E2D0 /* significant_month.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = significant_month.geojson; sourceTree = "<group>"; };
 		4320C7672B693DEA00DFBF36 /* HttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HttpClient.swift; sourceTree = "<group>"; };
 		4320C76A2B693EB000DFBF36 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				439150E42C16762F00877ABB /* EmptyResultView.swift */,
 				436522702B8C212500B7FB96 /* SpotCellView.swift */,
 				43F667112C0FF65D009626E7 /* MapView.swift */,
+				43168DD42C1D449B00E3EE16 /* MapMenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				437E2D922B60ABD900ED6C51 /* EarthquakesApp.swift in Sources */,
 				4320C76B2B693EB000DFBF36 /* Constants.swift in Sources */,
 				432AA4CD2B809C3C005432E7 /* Errors.swift in Sources */,
+				43168DD52C1D449B00E3EE16 /* MapMenuView.swift in Sources */,
 				436522712B8C212500B7FB96 /* SpotCellView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
