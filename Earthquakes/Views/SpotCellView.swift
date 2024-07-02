@@ -49,5 +49,5 @@ struct SpotCellView: View {
 }
 
 #Preview {
-    SpotCellView(content: FakeData.earthquakes.first!)
+    SpotCellView(content: Earthquake.mock.first!)
 }

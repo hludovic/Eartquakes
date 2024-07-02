@@ -48,7 +48,7 @@ struct SpotListView: View {
 #Preview {
     NavigationStack {
         let viewModel = EarthquakeViewModel()
-        viewModel.earthquakes = FakeData.earthquakes
+        viewModel.earthquakes = Earthquake.mock
         return SpotListView()
             .environment(viewModel)
     }

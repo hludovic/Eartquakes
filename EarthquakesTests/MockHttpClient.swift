@@ -8,22 +8,23 @@
 import Foundation
 @testable import Earthquakes
 
+typealias MockRequest = (throwError: HttpError?, period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength)
 
 class MockHttpClient: Networking {
-    var throwError: Bool = false
-    var mockedData: Data?
+    var mockRequest: MockRequest?
 
     func fetch<T>(url: URL, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy) async throws -> T where T : Decodable {
-        guard !throwError else { throw HttpError.badResponse}
-        guard let mockedData else { throw HttpError.invalidURL }
+        guard let mockRequest = mockRequest else { throw HttpError.invalidURL }
+        guard (mockRequest.throwError == nil) else { throw mockRequest.throwError! }
+        guard let mockResponse = try? getFileData(request: mockRequest) else { throw HttpError.invalidURL }
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = dateDecodingStrategy
-        guard let response = try? decoder.decode(T.self, from: mockedData) else { throw HttpError.errorDecodingData }
+        guard let response = try? decoder.decode(T.self, from: mockResponse) else { throw HttpError.errorDecodingData }
         return response
     }
 
-    func getFileData(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) throws ->  Data {
-        let parameter = "\(strength.rawValue)_\(period.rawValue)"
+    private func getFileData(request: MockRequest) throws ->  Data {
+        let parameter = "\(request.strength.rawValue)_\(request.period.rawValue)"
         let bundleDoingTest = Bundle(for: type(of: self ))
         let path = bundleDoingTest.path(forResource: parameter, ofType: "geojson")
         let data = try Data(contentsOf: URL(filePath: path!))

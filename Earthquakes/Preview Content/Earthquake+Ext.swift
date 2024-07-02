@@ -1,13 +1,13 @@
 //
-//  FakeData.swift
+//  Earthquake+Ext.swift
 //  Earthquakes
 //
-//  Created by Ludovic HENRY on 20/02/2024.
+//  Created by Ludovic HENRY on 01/07/2024.
 //
 
 import Foundation
 
-struct FakeData {
+extension Earthquake {
     private static let fakeDates: [Date] = [
         Date.now.addingTimeInterval(-(5 * 60)),
         Date.now.addingTimeInterval(-(10 * 60)),
@@ -15,7 +15,7 @@ struct FakeData {
         Date.dateCreator(year: 2024, month: 3, day: 14)
     ]
 
-    static let earthquakes: [Earthquake] = [
+    static let mock: [Earthquake] = [
         Earthquake(
             id: UUID().uuidString,
             magnitude: 4.81,

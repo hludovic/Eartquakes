@@ -55,7 +55,7 @@ struct SearchFiltersView: View {
 
 #Preview {
     let viewModel = EarthquakeViewModel()
-    viewModel.earthquakes = FakeData.earthquakes
+    viewModel.earthquakes = Earthquake.mock
     return SearchFiltersView()
         .environment(viewModel)
 }

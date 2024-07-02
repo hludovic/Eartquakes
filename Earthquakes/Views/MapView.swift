@@ -41,7 +41,7 @@ struct MapView: View {
 
 #Preview {
     let viewModel = EarthquakeViewModel()
-    viewModel.earthquakes = FakeData.earthquakes
+    viewModel.earthquakes = Earthquake.mock
 
     return MapView()
         .environment(viewModel)
