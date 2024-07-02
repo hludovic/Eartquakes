@@ -8,10 +8,13 @@
 import Foundation
 @testable import Earthquakes
 
-typealias MockRequest = (throwError: HttpError?, period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength)
-
 class MockHttpClient: Networking {
-    var mockRequest: MockRequest?
+    private typealias MockRequest = (throwError: HttpError?, period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength)
+    private var mockRequest: MockRequest?
+
+    func updateMockRequest(throwError: HttpError? = nil, period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength){
+        mockRequest = MockRequest(throwError: throwError, period: period, strength: strength)
+    }
 
     func fetch<T>(url: URL, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy) async throws -> T where T : Decodable {
         guard let mockRequest = mockRequest else { throw HttpError.invalidURL }

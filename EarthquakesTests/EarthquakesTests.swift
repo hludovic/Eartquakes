@@ -26,7 +26,7 @@ final class EarthquakesTests: XCTestCase {
 
     func testFetchingDataSuccessfully() async throws {
         XCTAssertEqual(viewModel.earthquakes.count, 0)
-        mockHttpClient.mockRequest = MockRequest(throwError: nil, period: .aMonth, strength: .significant)
+        mockHttpClient.updateMockRequest(period: .aMonth, strength: .significant)
 
         viewModel.selectedPeriod = .aMonth
         viewModel.selectedStrength = .significant
@@ -35,7 +35,7 @@ final class EarthquakesTests: XCTestCase {
     }
 
     func testFetchingDataWithError() async throws {
-        mockHttpClient.mockRequest = MockRequest(throwError: .badResponse, period: .aMonth, strength: .significant)
+        mockHttpClient.updateMockRequest(throwError: .badResponse, period: .aMonth, strength: .significant)
 
         viewModel.selectedPeriod = .aMonth
         viewModel.selectedStrength = .significant
