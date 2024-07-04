@@ -15,13 +15,9 @@ struct SpotListView: View {
 
         List {
             Section {
-                if viewModel.earthquakes.isEmpty {
-                    EmptyResultView()
-                } else {
-                    ForEach(viewModel.earthquakes) { content in
-                        Button(action: {viewModel.buttonLocationPresed(earthquake: content)}) {
-                            SpotCellView(content: content)
-                        }
+                ForEach(viewModel.filterdEarthquakes) { content in
+                    Button(action: {viewModel.buttonLocationPresed(earthquake: content)}) {
+                        SpotCellView(content: content)
                     }
                 }
             } header: {
@@ -37,11 +33,12 @@ struct SpotListView: View {
         .if(viewModel.canFetch()) { view in
             view.refreshable { await viewModel.fetch() }
         }
-        .toolbar {
-            ToolbarItem(placement: .automatic) {
-                Toggle("Search", systemImage: "text.magnifyingglass", isOn: $viewModel.searchButtonActivated.animation())
-            }
-        }
+        .searchable(text: $viewModel.textSearch, prompt: "Text")
+//        .toolbar {
+//            ToolbarItem(placement: .automatic) {
+//                Toggle("Search", systemImage: "text.magnifyingglass", isOn: $viewModel.searchButtonActivated.animation())
+//            }
+//        }
         Text("\(viewModel.bottomListCountString)")
 
     }

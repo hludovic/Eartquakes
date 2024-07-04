@@ -12,6 +12,10 @@ import SwiftUI
 
 @Observable final class EarthquakeViewModel {
     var earthquakes: [Earthquake] = []
+    var filterdEarthquakes: [Earthquake] {
+        guard !textSearch.isEmpty else { return earthquakes }
+        return earthquakes.filter { $0.title.localizedStandardContains(textSearch) }
+    }
     var selectedPeriod: SearchFilterContent.Period = .aDay
     var selectedStrength: SearchFilterContent.Magnitude = .overMag4_5
     var isShowingError: Bool = false
@@ -20,7 +24,7 @@ import SwiftUI
     var mapPosition: MapCameraPosition = .automatic
     var searchButtonActivated: Bool = false
     var textSearch: String = ""
-    var bottomListCountString: String { return earthquakes.count > 0 ? "\(earthquakes.count) found" : "" }
+    var bottomListCountString: String { return filterdEarthquakes.count > 0 ? "\(filterdEarthquakes.count) found" : "" }
     var mapLocations: [MapLocation] {
         guard !earthquakes.isEmpty else { return [] }
         var locations: [MapLocation] = []

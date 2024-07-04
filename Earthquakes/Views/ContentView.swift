@@ -12,21 +12,22 @@ struct ContentView: View {
 
     var body: some View {
         NavigationSplitView {
-            SpotListView()
-                .environment(viewModel)
+            if !viewModel.earthquakes.isEmpty {
+                SpotListView()
+                    .environment(viewModel)
+            } else {
+                EmptyResultView()
+            }
         } detail: {
             MapView()
                 .environment(viewModel)
                 .navigationBarTitleDisplayMode(.inline)
         }
         .alert(isPresented: $viewModel.isShowingError, error: viewModel.error) { error in
-            Button("OK") {
-                viewModel.isShowingError = false
-            }
+            Button("OK") { viewModel.isShowingError = false }
         } message: { error in
             Text(error.failureReason)
         }
-
     }
 }
 
