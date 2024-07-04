@@ -11,6 +11,7 @@ import MapKit
 import SwiftUI
 
 @Observable final class EarthquakeViewModel {
+    private let resultLimit: Int = 100
     var earthquakes: [Earthquake] = []
     var filterdEarthquakes: [Earthquake] {
         guard !textSearch.isEmpty else { return earthquakes }
@@ -19,7 +20,7 @@ import SwiftUI
     var selectedPeriod: SearchFilterContent.Period = .aDay
     var selectedStrength: SearchFilterContent.Magnitude = .overMag4_5
     var isShowingError: Bool = false
-    var error: EarthquakeError = .invalidURL
+    var error: EarthquakeError = .unknown(message: "")
     let httpClient: Networking
     var mapPosition: MapCameraPosition = .automatic
     var searchButtonActivated: Bool = false
@@ -58,7 +59,7 @@ import SwiftUI
     }
 
     func canDisplay(earthquakes: [Earthquake]) -> Bool {
-        return earthquakes.count <= 100 ? true : false
+        return earthquakes.count <= resultLimit ? true : false
     }
 
     func buttonLocationPresed(earthquake: Earthquake) {
