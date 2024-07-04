@@ -16,16 +16,10 @@ struct EmptyResultView: View {
                 .padding(.bottom, 20)
             HStack {
                 Text("Press the button")
-                Image(systemName: "text.magnifyingglass")
+                Image(systemName: "line.3.horizontal.decrease.circle")
             }
             Text("to make a new search")
                 .padding(.bottom, 10)
-            HStack {
-                Text("You can pull")
-                Image(systemName: "menubar.arrow.down.rectangle")
-                Text("to refresh")
-            }
-            .font(.caption2)
             Spacer()
         }
         .listRowSeparator(.hidden, edges: .all)

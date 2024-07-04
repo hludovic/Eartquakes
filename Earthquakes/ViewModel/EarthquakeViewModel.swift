@@ -44,10 +44,6 @@ import SwiftUI
     init(httpClient: Networking = HttpClient.shared) { self.httpClient = httpClient }
 
     func fetch() async {
-        guard canFetch() else {
-            error = .cantFetch
-            return isShowingError = true
-        }
         do {
             try await fetchEarthquakes(since: paramPeriod, strength: paramStrength)
         } catch (let fetchError) {
@@ -61,14 +57,8 @@ import SwiftUI
         }
     }
 
-    func canFetch() -> Bool {
-        if selectedPeriod == .aMonth {
-            if selectedStrength == .all {return false }
-            if selectedStrength == .overMag1 { return false }
-            if selectedStrength == .overMag2_5 { return false }
-            if selectedStrength == .overMag4_5 { return false }
-        }
-        return true
+    func canDisplay(earthquakes: [Earthquake]) -> Bool {
+        return earthquakes.count <= 100 ? true : false
     }
 
     func buttonLocationPresed(earthquake: Earthquake) {
@@ -86,7 +76,6 @@ import SwiftUI
         )
         withAnimation { self.mapPosition = position }
     }
-
 }
 
 private extension EarthquakeViewModel {
@@ -124,7 +113,9 @@ private extension EarthquakeViewModel {
         let urlString: String = ApiJsonFeeds.baseURL + ApiJsonFeeds.endpoint + "/" + parameter + "." + ApiJsonFeeds.FileFormat.json
         guard let url = URL(string: urlString) else { throw EarthquakeError.invalidURL}
         let decodedEarthquakes: DecodedEarthquakes = try await httpClient.fetch(url: url, dateDecodingStrategy: .millisecondsSince1970)
-        withAnimation { earthquakes = decodedEarthquakes.earthquakes }
+        let result = decodedEarthquakes.earthquakes
+        guard canDisplay(earthquakes: result) else { throw EarthquakeError.tooManyResult(count: result.count)}
+        withAnimation { earthquakes = result }
     }
 }
 

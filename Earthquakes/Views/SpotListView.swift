@@ -33,16 +33,13 @@ struct SpotListView: View {
                     }
                 }
                 .listStyle(.plain)
-                .navigationTitle("Earthquakes")
-                .navigationBarTitleDisplayMode(.inline)
-                .if(viewModel.canFetch()) { view in
-                    view.refreshable { await viewModel.fetch() }
-                }
+                .refreshable { await viewModel.fetch() }
             }
         }
-        .searchable(text: $viewModel.textSearch, prompt: "Text")
+        .navigationTitle("Earthquakes")
+        .searchable(text: $viewModel.textSearch, prompt: "filter")
         .toolbar {
-            ToolbarItem {
+            ToolbarItem(placement: .automatic) {
                 Button("Search", systemImage: "line.3.horizontal.decrease.circle") {
                     isShowingSheet = true
                 }
