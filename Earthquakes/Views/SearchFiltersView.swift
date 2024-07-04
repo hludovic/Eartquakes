@@ -9,47 +9,41 @@ import SwiftUI
 
 struct SearchFiltersView: View {
     @Environment(EarthquakeViewModel.self) private var viewModel
+    //    @State var selectedMagnitude: SearchFilterContent.Magnitude = .overMag1
 
     var body: some View {
         @Bindable var viewModel = viewModel
 
         VStack {
-            TextField("Search", text: $viewModel.textSearch)
-                .textFieldStyle(.roundedBorder)
             HStack {
-                Menu("Magnitude", systemImage: "waveform.badge.exclamationmark") {
-                    ForEach(SearchFilterContent.Magnitude.allCases) { item in
-                        Button(action: {viewModel.selectedStrength = item}) {
-                            if viewModel.selectedStrength == item {
-                                Label(item.rawValue, systemImage: "checkmark")
-                            } else {
-                                Text(item.rawValue)
-                            }
-                        }
-                    }
-                }
-                Menu("Date", systemImage: "calendar") {
-                    ForEach(SearchFilterContent.Period.allCases) { item in
-                        Button(action: {viewModel.selectedPeriod = item}) {
-                            if viewModel.selectedPeriod == item {
-                                Label(item.rawValue, systemImage: "checkmark")
-                            } else {
-                                Text(item.rawValue)
-                            }
-                        }
-                    }
-                }
+                Label("Magnitude", systemImage: "waveform.badge.exclamationmark")
                 Spacer()
-                Button(action: { viewModel.earthquakes.reverse() } ) {
-                    Label("Invert List", systemImage: "arrow.up.arrow.down")
-                        .labelStyle(.iconOnly)
-                }
-                Button(action: { Task { await viewModel.fetch() } } ) {
-                    Label("Search", systemImage: "arrow.triangle.2.circlepath")
-                        .labelStyle(.iconOnly)
+            }
+            Picker("Magnitude", systemImage: "waveform.badge.exclamationmark", selection: $viewModel.selectedStrength) {
+                ForEach(SearchFilterContent.Magnitude.allCases) { item in
+                    Text(item.rawValue)
                 }
             }
+            .pickerStyle(.palette)
+
+            HStack {
+                Label("Date", systemImage: "calendar")
+                Spacer()
+            }
+            .padding(.top)
+
+            Picker("Date", systemImage: "calendar", selection: $viewModel.selectedPeriod) {
+                ForEach(SearchFilterContent.Period.allCases) { item in
+                    Text(item.rawValue)
+                }
+            }
+            .pickerStyle(.palette)
+
+            Button(action: { Task { await viewModel.fetch() } } ) { Text("Search") }
+            .buttonStyle(.bordered)
+            .padding(.top)
         }
+        .frame(width: 450)
     }
 }
 
@@ -58,4 +52,5 @@ struct SearchFiltersView: View {
     viewModel.earthquakes = Earthquake.mock
     return SearchFiltersView()
         .environment(viewModel)
+        .border(Color.black)
 }

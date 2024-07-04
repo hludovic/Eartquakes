@@ -9,7 +9,8 @@ import SwiftUI
 
 struct EmptyResultView: View {
     var body: some View {
-        VStack(alignment: .center) {
+        VStack {
+            Spacer()
             Text("No result found")
                 .font(.title)
                 .padding(.bottom, 20)
@@ -25,6 +26,7 @@ struct EmptyResultView: View {
                 Text("to refresh")
             }
             .font(.caption2)
+            Spacer()
         }
         .listRowSeparator(.hidden, edges: .all)
 

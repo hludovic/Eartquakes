@@ -12,12 +12,8 @@ struct ContentView: View {
 
     var body: some View {
         NavigationSplitView {
-            if !viewModel.earthquakes.isEmpty {
-                SpotListView()
-                    .environment(viewModel)
-            } else {
-                EmptyResultView()
-            }
+            SpotListView()
+                .environment(viewModel)
         } detail: {
             MapView()
                 .environment(viewModel)
