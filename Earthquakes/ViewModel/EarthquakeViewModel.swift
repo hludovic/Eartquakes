@@ -19,9 +19,7 @@ import SwiftUI
     var mapPosition: MapCameraPosition = .automatic
     var searchButtonActivated: Bool = false
     var textSearch: String = ""
-    var bottomListCountString: String {
-        return earthquakes.count > 0 ? "\(earthquakes.count) found" : ""
-    }
+    var bottomListCountString: String { return earthquakes.count > 0 ? "\(earthquakes.count) found" : "" }
     var mapLocations: [MapLocation] {
         guard !earthquakes.isEmpty else { return [] }
         var locations: [MapLocation] = []
@@ -37,7 +35,6 @@ import SwiftUI
         }
         return locations
     }
-
 
     init(httpClient: Networking = HttpClient.shared) { self.httpClient = httpClient }
 
