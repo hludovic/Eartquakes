@@ -19,6 +19,14 @@ struct ContentView: View {
                 .environment(viewModel)
                 .navigationBarTitleDisplayMode(.inline)
         }
+        .alert(isPresented: $viewModel.isShowingError, error: viewModel.error) { error in
+            Button("OK") {
+                viewModel.isShowingError = false
+            }
+        } message: { error in
+            Text(error.failureReason)
+        }
+
     }
 }
 

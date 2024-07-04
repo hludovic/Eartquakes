@@ -14,7 +14,8 @@ import SwiftUI
     var earthquakes: [Earthquake] = []
     var selectedPeriod: SearchFilterContent.Period = .aDay
     var selectedStrength: SearchFilterContent.Magnitude = .overMag4_5
-    var errorMessage: String? = nil
+    var isShowingError: Bool = false
+    var error: EarthquakeError = .invalidURL
     let httpClient: Networking
     var mapPosition: MapCameraPosition = .automatic
     var searchButtonActivated: Bool = false
@@ -39,11 +40,20 @@ import SwiftUI
     init(httpClient: Networking = HttpClient.shared) { self.httpClient = httpClient }
 
     func fetch() async {
-        guard canFetch() else { return errorMessage = "ERROR" }
+        guard canFetch() else {
+            error = .cantFetch
+            return isShowingError = true
+        }
         do {
             try await fetchEarthquakes(since: paramPeriod, strength: paramStrength)
-        } catch {
-            errorMessage = "ERROR"
+        } catch (let fetchError) {
+            guard let fetchError = fetchError as? EarthquakeError else {
+                try? await Task.sleep(nanoseconds: 1_000_000_000)
+                error = .unknown(message: fetchError.localizedDescription)
+                return isShowingError = true
+            }
+            error = fetchError
+            isShowingError = true
         }
     }
 
@@ -108,7 +118,7 @@ private extension EarthquakeViewModel {
     func fetchEarthquakes(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) async throws {
         let parameter = "\(strength.rawValue)_\(period.rawValue)"
         let urlString: String = ApiJsonFeeds.baseURL + ApiJsonFeeds.endpoint + "/" + parameter + "." + ApiJsonFeeds.FileFormat.json
-        guard let url = URL(string: urlString) else { throw HttpError.invalidURL}
+        guard let url = URL(string: urlString) else { throw EarthquakeError.invalidURL}
         let decodedEarthquakes: DecodedEarthquakes = try await httpClient.fetch(url: url, dateDecodingStrategy: .millisecondsSince1970)
         withAnimation { earthquakes = decodedEarthquakes.earthquakes }
     }

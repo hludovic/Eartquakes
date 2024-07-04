@@ -34,12 +34,14 @@ struct SpotListView: View {
         .listStyle(.plain)
         .navigationTitle("Earthquakes")
         .navigationBarTitleDisplayMode(.inline)
-        .refreshable { Task { await viewModel.fetch() } }
-        .toolbar(content: {
+        .if(viewModel.canFetch()) { view in
+            view.refreshable { await viewModel.fetch() }
+        }
+        .toolbar {
             ToolbarItem(placement: .automatic) {
                 Toggle("Search", systemImage: "text.magnifyingglass", isOn: $viewModel.searchButtonActivated.animation())
             }
-        })
+        }
         Text("\(viewModel.bottomListCountString)")
 
     }

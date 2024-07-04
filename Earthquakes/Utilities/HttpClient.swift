@@ -27,10 +27,10 @@ final class HttpClient: Networking {
 
     func fetch<T: Decodable> (url: URL, dateDecodingStrategy: JSONDecoder.DateDecodingStrategy) async throws -> T {
         let (data, response) = try await URLSession.shared.data(from: url)
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw HttpError.badResponse }
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw EarthquakeError.badUrlResponse }
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = dateDecodingStrategy
-        guard let object = try? decoder.decode(T.self, from: data) else { throw HttpError.errorDecodingData }
+        guard let object = try? decoder.decode(T.self, from: data) else { throw EarthquakeError.failDecodingData }
         return object
     }
 }

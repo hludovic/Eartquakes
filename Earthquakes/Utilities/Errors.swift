@@ -7,32 +7,40 @@
 
 import Foundation
 
-enum HttpError: Error {
-    case badResponse
-    case errorDecodingData
+enum EarthquakeError: LocalizedError {
+    case badUrlResponse
+    case failDecodingData
     case invalidURL
-}
+    case cantFetch
+    case unknown(message: String)
 
-extension HttpError: LocalizedError {
     var errorDescription: String? {
         switch self {
-        case .badResponse:
+        case .badUrlResponse:
             "Bad Response"
-        case .errorDecodingData:
+        case .failDecodingData:
             "Error Decoding Data"
         case .invalidURL:
             "Invalid URL"
+        case .cantFetch:
+            "Invalid Request"
+        case .unknown(message: _):
+            "Error Encountered"
         }
     }
 
-    var failureReason: String? {
+    var failureReason: String {
         switch self {
-        case .badResponse:
+        case .badUrlResponse:
             "An error occurred when receiving the data."
-        case .errorDecodingData:
+        case .failDecodingData:
             "An error occurred while processing the data."
         case .invalidURL:
             "Unable to communicate with the server."
+        case .cantFetch:
+            "The request is invalid or has been blocked."
+        case .unknown(message: let message):
+            message
         }
     }
 }

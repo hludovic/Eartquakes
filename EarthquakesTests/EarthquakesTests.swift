@@ -35,12 +35,13 @@ final class EarthquakesTests: XCTestCase {
     }
 
     func testFetchingDataWithError() async throws {
-        mockHttpClient.updateMockRequest(throwError: .badResponse, period: .aMonth, strength: .significant)
+        mockHttpClient.updateMockRequest(throwError: .badUrlResponse, period: .aMonth, strength: .significant)
 
         viewModel.selectedPeriod = .aMonth
         viewModel.selectedStrength = .significant
         await viewModel.fetch()
-
-        XCTAssertEqual(viewModel.errorMessage, "ERROR")
+        
+        XCTAssertTrue(viewModel.isShowingError)
+        XCTAssertEqual(viewModel.error.errorDescription, EarthquakeError.badUrlResponse.errorDescription)
     }
 }
