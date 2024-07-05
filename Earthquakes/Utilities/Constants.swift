@@ -36,9 +36,9 @@ struct SearchFilterContent {
     enum Magnitude: String, CaseIterable, Identifiable {
         var id: Self { return self }
         case all = "All records"
-        case overMag1 = "Mag > 1"
-        case overMag2_5 = "Mag > 2.5"
-        case overMag4_5 = "Mag > 4.5"
+        case overMag1 = "Mag 1 +"
+        case overMag2_5 = "Mag 2.5 +"
+        case overMag4_5 = "Mag 4.5 +"
         case significant = "Significants"
     }
 

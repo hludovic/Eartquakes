@@ -15,7 +15,6 @@ struct MapView: View {
         @Bindable var viewModel = viewModel
 
         ZStack(alignment: .topTrailing) {
-
             Map(position: $viewModel.mapPosition, interactionModes: [.pitch, .zoom, .pan]) {
                 ForEach(viewModel.mapLocations) { mapLocation in
                     Annotation(mapLocation.name, coordinate: mapLocation.coordinate) {
@@ -32,6 +31,7 @@ struct MapView: View {
                 }
             }
             MapMenuView()
+                .environment(viewModel)
         }
         .navigationTitle(
             "Earthquakes \(viewModel.selectedStrength.rawValue.lowercased()) recorded \(viewModel.selectedPeriod.rawValue.lowercased())"

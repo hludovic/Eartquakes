@@ -19,7 +19,6 @@ struct ContentView: View {
                 .environment(viewModel)
                 .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationSplitViewStyle(.balanced)
         .alert(isPresented: $viewModel.isShowingError, error: viewModel.error) { error in
             Button("OK") { viewModel.isShowingError = false }
         } message: { error in

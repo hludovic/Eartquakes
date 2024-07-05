@@ -8,16 +8,39 @@
 import SwiftUI
 
 struct MapMenuView: View {
+    @Environment(EarthquakeViewModel.self) private var viewModel
+
     var body: some View {
-        RoundedRectangle(cornerRadius: 25.0)
-            .frame(width: 100, height: 100, alignment: .center)
-            .foregroundStyle(Color.black)
-            .opacity(0.5)
-            .shadow(color: .black, radius: 10, x: 0.0, y: 0.0)
-            .padding()
+        ZStack {
+            MapMenuBgnd()
+            VStack(alignment: .center, spacing: 15) {
+                Button(action: {
+                    withAnimation { viewModel.mapPosition = .automatic }
+                }) {
+                    Image(systemName: "globe")
+                        .resizable()
+                        .foregroundStyle(.black)
+                        .opacity(0.4)
+                        .frame(width: 25, height: 25)
+                }
+                Divider()
+                    .frame(width: 20)
+                Button(action: {}) {
+                    Image(systemName: "location")
+                        .resizable()
+                        .foregroundStyle(.black)
+                        .opacity(0.4)
+                        .frame(width: 25, height: 25)
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    MapMenuView()
+    let viewModel = EarthquakeViewModel()
+    viewModel.earthquakes = Earthquake.mock
+
+    return MapMenuView()
+        .environment(viewModel)
 }

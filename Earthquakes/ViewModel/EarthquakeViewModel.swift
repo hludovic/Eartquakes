@@ -11,7 +11,7 @@ import MapKit
 import SwiftUI
 
 @Observable final class EarthquakeViewModel {
-    private let resultLimit: Int = 100
+    private let resultLimit: Int = 200
     var earthquakes: [Earthquake] = []
     var filterdEarthquakes: [Earthquake] {
         guard !textSearch.isEmpty else { return earthquakes }
@@ -116,7 +116,9 @@ private extension EarthquakeViewModel {
         let decodedEarthquakes: DecodedEarthquakes = try await httpClient.fetch(url: url, dateDecodingStrategy: .millisecondsSince1970)
         let result = decodedEarthquakes.earthquakes
         guard canDisplay(earthquakes: result) else { throw EarthquakeError.tooManyResult(count: result.count)}
-        withAnimation { earthquakes = result }
+        await MainActor.run {
+            withAnimation { earthquakes = result }
+        }
     }
 }
 
