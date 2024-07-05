@@ -121,7 +121,6 @@
 				437E2D932B60ABD900ED6C51 /* ContentView.swift */,
 				439B63C32B8456C20019C0EB /* SpotListView.swift */,
 				43F667112C0FF65D009626E7 /* MapView.swift */,
-				43168DD42C1D449B00E3EE16 /* MapMenuView.swift */,
 				434E29802C375FFB00B317AD /* Components */,
 			);
 			path = Views;
@@ -150,6 +149,7 @@
 				43FBAD892C0D866800639A19 /* SearchFiltersView.swift */,
 				439150E42C16762F00877ABB /* EmptyResultView.swift */,
 				436522702B8C212500B7FB96 /* SpotCellView.swift */,
+				43168DD42C1D449B00E3EE16 /* MapMenuView.swift */,
 				434E29832C37605A00B317AD /* MapMenuBgnd.swift */,
 			);
 			path = Components;

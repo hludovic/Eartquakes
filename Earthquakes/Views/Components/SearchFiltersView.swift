@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SearchFiltersView: View {
     @Environment(EarthquakeViewModel.self) private var viewModel
-    //    @State var selectedMagnitude: SearchFilterContent.Magnitude = .overMag1
 
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -17,31 +16,25 @@ struct SearchFiltersView: View {
         VStack {
             HStack {
                 Label("Magnitude", systemImage: "waveform.badge.exclamationmark")
+                    .padding(.top)
                 Spacer()
             }
             Picker("Magnitude", systemImage: "waveform.badge.exclamationmark", selection: $viewModel.selectedStrength) {
-                ForEach(SearchFilterContent.Magnitude.allCases) { item in
-                    Text(item.rawValue)
-                }
+                ForEach(SearchFilterContent.Magnitude.allCases) { Text($0.rawValue) }
             }
             .pickerStyle(.palette)
-
             HStack {
                 Label("Date", systemImage: "calendar")
                 Spacer()
             }
             .padding(.top)
-
             Picker("Date", systemImage: "calendar", selection: $viewModel.selectedPeriod) {
-                ForEach(SearchFilterContent.Period.allCases) { item in
-                    Text(item.rawValue)
-                }
+                ForEach(SearchFilterContent.Period.allCases) { Text($0.rawValue) }
             }
             .pickerStyle(.palette)
-
             Button(action: { Task { await viewModel.fetch() } } ) { Text("Search") }
             .buttonStyle(.bordered)
-            .padding(.top)
+            .padding()
         }
         .frame(width: 450)
     }

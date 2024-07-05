@@ -13,24 +13,27 @@ struct MapMenuView: View {
     var body: some View {
         ZStack {
             MapMenuBgnd()
+                .opacity(0.8)
             VStack(alignment: .center, spacing: 15) {
                 Button(action: {
                     withAnimation { viewModel.mapPosition = .automatic }
                 }) {
                     Image(systemName: "globe")
                         .resizable()
-                        .foregroundStyle(.black)
-                        .opacity(0.4)
                         .frame(width: 25, height: 25)
+                        .foregroundColor(.black)
+                        .opacity(0.4)
+                        .padding(5)
                 }
                 Divider()
-                    .frame(width: 20)
+                    .frame(width: 40)
                 Button(action: {}) {
                     Image(systemName: "location")
                         .resizable()
-                        .foregroundStyle(.black)
-                        .opacity(0.4)
                         .frame(width: 25, height: 25)
+                        .foregroundColor(.black)
+                        .opacity(0.4)
+                        .padding(5)
                 }
             }
         }

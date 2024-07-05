@@ -33,9 +33,7 @@ struct MapView: View {
             MapMenuView()
                 .environment(viewModel)
         }
-        .navigationTitle(
-            "Earthquakes \(viewModel.selectedStrength.rawValue.lowercased()) recorded \(viewModel.selectedPeriod.rawValue.lowercased())"
-        )
+        .navigationTitle(viewModel.titleGenerator())
     }
 }
 

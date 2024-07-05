@@ -44,9 +44,9 @@ struct SearchFilterContent {
 
     enum Period: String, CaseIterable, Identifiable {
         var id: Self { return self }
-        case oneHour = "Since One Hour"
-        case aDay = "Since One Day"
-        case aWeek = "Since A Week"
-        case aMonth = "Since A Month"
+        case oneHour = "Past Hour"
+        case aDay = "Past Day"
+        case aWeek = "Past 7 Days"
+        case aMonth = "Past 30 Days"
     }
 }

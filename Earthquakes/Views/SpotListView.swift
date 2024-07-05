@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SpotListView: View {
     @Environment(EarthquakeViewModel.self) private var viewModel
-    @State private var isShowingSheet: Bool = false
 
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -41,9 +40,9 @@ struct SpotListView: View {
         .toolbar {
             ToolbarItem(placement: .automatic) {
                 Button("Search", systemImage: "line.3.horizontal.decrease.circle") {
-                    isShowingSheet = true
+                    viewModel.isShowingSearchFilter = true
                 }
-                .popover(isPresented: $isShowingSheet) {
+                .popover(isPresented: $viewModel.isShowingSearchFilter) {
                     SearchFiltersView()
                         .padding()
                 }
