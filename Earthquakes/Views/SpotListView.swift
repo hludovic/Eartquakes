@@ -17,18 +17,11 @@ struct SpotListView: View {
             if viewModel.earthquakes.isEmpty {
                 EmptyResultView()
             } else {
-                List {
-                    Section {
-                        ForEach(viewModel.filterdEarthquakes) { content in
-                            Button(action: {viewModel.buttonLocationPresed(earthquake: content)}) {
-                                SpotCellView(content: content)
-                            }
-                        }
-                    } header: {
-                        if viewModel.searchButtonActivated {
-                            SearchFiltersView()
-                                .environment(viewModel)
-                        }
+                List(selection: $viewModel.selectedEarthquake) {
+                    ForEach(viewModel.filterdEarthquakes) { content in
+                        SpotCellView(content: content)
+                            .tag(content.id)
+                            .listRowBackground(content.id == viewModel.selectedEarthquake ? Color.secondary.opacity(0.3) : nil)
                     }
                 }
                 .listStyle(.plain)

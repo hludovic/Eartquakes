@@ -12,6 +12,9 @@ import SwiftUI
 
 @Observable final class EarthquakeViewModel {
     private let resultLimit: Int = 200
+    var selectedEarthquake: String? = nil {
+        didSet { displayMapLocation(earthquakeID: selectedEarthquake) }
+    }
     var earthquakes: [Earthquake] = []
     var filterdEarthquakes: [Earthquake] {
         guard !textSearch.isEmpty else { return earthquakes }
@@ -24,7 +27,6 @@ import SwiftUI
     var error: EarthquakeError = .unknown(message: "")
     let httpClient: Networking
     var mapPosition: MapCameraPosition = .automatic
-    var searchButtonActivated: Bool = false
     var textSearch: String = ""
     var bottomListCountString: String { return filterdEarthquakes.count > 0 ? "\(filterdEarthquakes.count) found" : "" }
     var mapLocations: [MapLocation] {
@@ -58,26 +60,6 @@ import SwiftUI
             error = fetchError
             isShowingError = true
         }
-    }
-
-    func canDisplay(earthquakes: [Earthquake]) -> Bool {
-        return earthquakes.count <= resultLimit ? true : false
-    }
-
-    func buttonLocationPresed(earthquake: Earthquake) {
-        let position = MapCameraPosition.region(
-            MKCoordinateRegion(
-                center: CLLocationCoordinate2D(
-                    latitude: earthquake.latitude,
-                    longitude: earthquake.longitude
-                ),
-                span: MKCoordinateSpan(
-                    latitudeDelta: 5,
-                    longitudeDelta: 5
-                )
-            )
-        )
-        withAnimation { self.mapPosition = position }
     }
 
     func titleGenerator() -> String {
@@ -138,6 +120,29 @@ private extension EarthquakeViewModel {
         case .significant:
             return .significant
         }
+    }
+
+    private func canDisplay(earthquakes: [Earthquake]) -> Bool {
+        return earthquakes.count <= resultLimit ? true : false
+    }
+
+    private func displayMapLocation(earthquakeID: String?) {
+        guard let earthquakeID else { return }
+        guard let earthquake = filterdEarthquakes.first(where: { $0.id == earthquakeID }) else { return }
+
+        let position = MapCameraPosition.region(
+            MKCoordinateRegion(
+                center: CLLocationCoordinate2D(
+                    latitude: earthquake.latitude,
+                    longitude: earthquake.longitude
+                ),
+                span: MKCoordinateSpan(
+                    latitudeDelta: 5,
+                    longitudeDelta: 5
+                )
+            )
+        )
+        withAnimation { self.mapPosition = position }
     }
 
     func fetchEarthquakes(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) async throws {
