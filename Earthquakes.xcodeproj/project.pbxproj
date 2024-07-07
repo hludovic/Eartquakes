@@ -26,6 +26,7 @@
 		437EECFF2B8447760014A5BE /* MockHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EECFE2B8447760014A5BE /* MockHttpClient.swift */; };
 		439150E52C16762F00877ABB /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439150E42C16762F00877ABB /* EmptyResultView.swift */; };
 		439B63C42B8456C20019C0EB /* SpotListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439B63C32B8456C20019C0EB /* SpotListView.swift */; };
+		43A12D442C3A292C003F8776 /* InspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A12D432C3A292C003F8776 /* InspectorView.swift */; };
 		43B5B7942C372CC1008CB244 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B5B7932C372CC1008CB244 /* View+Extension.swift */; };
 		43CAFADD2B69451300CD47DC /* Earthquake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CAFADC2B69451300CD47DC /* Earthquake.swift */; };
 		43F667122C0FF65D009626E7 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F667112C0FF65D009626E7 /* MapView.swift */; };
@@ -66,6 +67,7 @@
 		437EECFE2B8447760014A5BE /* MockHttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHttpClient.swift; sourceTree = "<group>"; };
 		439150E42C16762F00877ABB /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
 		439B63C32B8456C20019C0EB /* SpotListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListView.swift; sourceTree = "<group>"; };
+		43A12D432C3A292C003F8776 /* InspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorView.swift; sourceTree = "<group>"; };
 		43B5B7932C372CC1008CB244 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		43CAFADC2B69451300CD47DC /* Earthquake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Earthquake.swift; sourceTree = "<group>"; };
 		43F667112C0FF65D009626E7 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				437E2D932B60ABD900ED6C51 /* ContentView.swift */,
 				439B63C32B8456C20019C0EB /* SpotListView.swift */,
 				43F667112C0FF65D009626E7 /* MapView.swift */,
+				43A12D432C3A292C003F8776 /* InspectorView.swift */,
 				434E29802C375FFB00B317AD /* Components */,
 			);
 			path = Views;
@@ -332,6 +335,7 @@
 				4320C76B2B693EB000DFBF36 /* Constants.swift in Sources */,
 				432AA4CD2B809C3C005432E7 /* Errors.swift in Sources */,
 				434766C92C3360E800C4FB96 /* Earthquake+Ext.swift in Sources */,
+				43A12D442C3A292C003F8776 /* InspectorView.swift in Sources */,
 				43168DD52C1D449B00E3EE16 /* MapMenuView.swift in Sources */,
 				436522712B8C212500B7FB96 /* SpotCellView.swift in Sources */,
 			);

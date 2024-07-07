@@ -13,7 +13,7 @@ import SwiftUI
 @Observable final class EarthquakeViewModel {
     private let resultLimit: Int = 200
     var selectedEarthquake: String? = nil {
-        didSet { displayMapLocation(earthquakeID: selectedEarthquake) }
+        didSet { displayMapLocation(for: selectedEarthquake) }
     }
     var earthquakes: [Earthquake] = []
     var filterdEarthquakes: [Earthquake] {
@@ -126,7 +126,7 @@ private extension EarthquakeViewModel {
         return earthquakes.count <= resultLimit ? true : false
     }
 
-    private func displayMapLocation(earthquakeID: String?) {
+    private func displayMapLocation(for earthquakeID: String?) {
         guard let earthquakeID else { return }
         guard let earthquake = filterdEarthquakes.first(where: { $0.id == earthquakeID }) else { return }
 
