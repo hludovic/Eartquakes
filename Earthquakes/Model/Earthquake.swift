@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Earthquake: Identifiable, Hashable {
+struct Earthquake: Identifiable {
     let id: String
     let magnitude: Float
     let place: String

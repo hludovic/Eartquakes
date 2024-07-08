@@ -17,19 +17,19 @@ struct SpotListView: View {
             if viewModel.earthquakes.isEmpty {
                 EmptyResultView()
             } else {
-                List(selection: $viewModel.selectedEarthquake) {
+                List(selection: $viewModel.selectedCell) {
                     ForEach(viewModel.filterdEarthquakes) { content in
                         SpotCellView(content: content)
                             .tag(content.id)
-                            .listRowBackground(content.id == viewModel.selectedEarthquake ? Color.secondary.opacity(0.3) : nil)
                     }
                 }
-                .listStyle(.plain)
+                .tint(.gray.opacity(0.3))
+                .listStyle(.insetGrouped)
                 .refreshable { await viewModel.fetch() }
             }
         }
         .navigationTitle("Earthquakes")
-        .searchable(text: $viewModel.textSearch, prompt: "Search...")
+        .searchable(text: $viewModel.textSearch, prompt: "Filter...")
         .toolbar {
             ToolbarItem(placement: .automatic) {
                 Button("Search", systemImage: "line.3.horizontal.decrease.circle") {
@@ -41,15 +41,12 @@ struct SpotListView: View {
                 }
             }
         }
-        Text(viewModel.bottomListCountString)
     }
 }
 
 #Preview {
     NavigationStack {
-        let viewModel = EarthquakeViewModel()
-        viewModel.earthquakes = Earthquake.mock
         return SpotListView()
-            .environment(viewModel)
+            .environment(EarthquakeViewModel(mockEarthquakes: Earthquake.mock))
     }
 }

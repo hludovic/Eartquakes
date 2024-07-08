@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var viewModel = EarthquakeViewModel()
+    @State private var viewModel = EarthquakeViewModel()
 
     var body: some View {
         NavigationSplitView {
@@ -28,7 +28,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    let viewModel = EarthquakeViewModel()
-    viewModel.earthquakes = Earthquake.mock
-    return ContentView(viewModel: viewModel)
+    return ContentView()
 }

@@ -26,7 +26,7 @@ struct SpotCellView: View {
                 Group {
                     Text(content.place)
                         .lineLimit(2)
-                        .minimumScaleFactor(0.9)
+                        .minimumScaleFactor(0.7)
                         .bold()
                     HStack {
                         Image(systemName: "arrow.down.and.line.horizontal.and.arrow.up")
@@ -42,8 +42,6 @@ struct SpotCellView: View {
             }
             Spacer()
         }
-        .foregroundStyle(.foreground)
-        .frame(maxWidth: .infinity)
     }
 }
 

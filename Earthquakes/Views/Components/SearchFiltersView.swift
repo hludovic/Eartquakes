@@ -15,11 +15,10 @@ struct SearchFiltersView: View {
 
         VStack {
             HStack {
-                Label("Magnitude", systemImage: "waveform.badge.exclamationmark")
-                    .padding(.top)
+                Label("Magnitude", systemImage: "waveform.path.ecg")
                 Spacer()
             }
-            Picker("Magnitude", systemImage: "waveform.badge.exclamationmark", selection: $viewModel.selectedStrength) {
+            Picker("Magnitude", systemImage: "waveform.path.ecg", selection: $viewModel.selectedStrength) {
                 ForEach(SearchFilterContent.Magnitude.allCases) { Text($0.rawValue) }
             }
             .pickerStyle(.palette)
@@ -32,13 +31,16 @@ struct SearchFiltersView: View {
                 ForEach(SearchFilterContent.Period.allCases) { Text($0.rawValue) }
             }
             .pickerStyle(.palette)
-            Button(action: { Task { await viewModel.fetch() } } ) { Text("Search") }
-            .buttonStyle(.bordered)
-            .padding()
+            Button(action: { Task { await viewModel.fetch() } } ) {
+                Text("Search Earthquakes")
+            }
+            .buttonStyle(SearchButtonStyle())
+            .padding(.top)
         }
         .frame(width: 450)
     }
 }
+
 
 #Preview {
     return SearchFiltersView()

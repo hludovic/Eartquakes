@@ -12,12 +12,12 @@ import SwiftUI
 
 @Observable final class EarthquakeViewModel {
     private let resultLimit: Int = 300
-    var selectedEarthquake: String? = nil { didSet { displayMapLocation(for: selectedEarthquake) } }
-    var earthquakes: [Earthquake] = []
+    private(set) var earthquakes: [Earthquake]
     var filterdEarthquakes: [Earthquake] {
         guard !textSearch.isEmpty else { return earthquakes }
         return earthquakes.filter { $0.title.localizedStandardContains(textSearch) }
     }
+    var selectedCell: String? = nil { didSet { displayMapLocation(for: selectedCell) } }
     var isShowingSearchFilter: Bool = false
     var selectedPeriod: SearchFilterContent.Period = .aDay
     var selectedStrength: SearchFilterContent.Magnitude = .overMag4_5
@@ -26,24 +26,12 @@ import SwiftUI
     let httpClient: Networking
     var mapPosition: MapCameraPosition = .automatic
     var textSearch: String = ""
-    var bottomListCountString: String { return filterdEarthquakes.count > 0 ? "\(filterdEarthquakes.count) found" : "" }
-    var mapLocations: [MapLocation] {
-        guard !earthquakes.isEmpty else { return [] }
-        var locations: [MapLocation] = []
-        for earthquake in earthquakes {
-            let mapLocation = MapLocation(
-                name: earthquake.title,
-                coordinate: CLLocationCoordinate2D(
-                    latitude: earthquake.latitude,
-                    longitude: earthquake.longitude
-                )
-            )
-            locations.append(mapLocation)
-        }
-        return locations
-    }
+    var mapLocations: [MapLocation] { getMapLocations() }
 
-    init(httpClient: Networking = HttpClient.shared) { self.httpClient = httpClient }
+    init(httpClient: Networking = HttpClient.shared, mockEarthquakes: [Earthquake] = []) {
+        self.httpClient = httpClient
+        self.earthquakes = mockEarthquakes
+    }
 
     func fetch() async {
         isShowingSearchFilter = false
@@ -51,7 +39,6 @@ import SwiftUI
             try await fetchEarthquakes(since: paramPeriod, strength: paramStrength)
         } catch (let fetchError) {
             guard let fetchError = fetchError as? EarthquakeError else {
-                try? await Task.sleep(nanoseconds: 1_000_000_000)
                 error = .unknown(message: fetchError.localizedDescription)
                 return isShowingError = true
             }
@@ -61,7 +48,7 @@ import SwiftUI
     }
 
     func resetMapButton() {
-        withAnimation { mapPosition = .automatic }
+        selectedCell = nil
     }
 
     func titleGenerator() -> String {
@@ -129,7 +116,7 @@ private extension EarthquakeViewModel {
     }
 
     func displayMapLocation(for earthquakeID: String?) {
-        guard let earthquakeID else { return }
+        guard let earthquakeID else { return withAnimation { mapPosition = .automatic } }
         guard let earthquake = filterdEarthquakes.first(where: { $0.id == earthquakeID }) else { return }
 
         let position = MapCameraPosition.region(
@@ -154,9 +141,23 @@ private extension EarthquakeViewModel {
         let decodedEarthquakes: DecodedEarthquakes = try await httpClient.fetch(url: url, dateDecodingStrategy: .millisecondsSince1970)
         let result = decodedEarthquakes.earthquakes
         guard canDisplay(earthquakes: result) else { throw EarthquakeError.tooManyResult(count: result.count)}
-        await MainActor.run {
-            withAnimation { earthquakes = result }
+        await MainActor.run { withAnimation { earthquakes = result } }
+    }
+
+    func getMapLocations() -> [MapLocation] {
+        guard !earthquakes.isEmpty else { return [] }
+        var locations: [MapLocation] = []
+        for earthquake in earthquakes {
+            let mapLocation = MapLocation(
+                name: earthquake.title,
+                coordinate: CLLocationCoordinate2D(
+                    latitude: earthquake.latitude,
+                    longitude: earthquake.longitude
+                )
+            )
+            locations.append(mapLocation)
         }
+        return locations
     }
 }
 
