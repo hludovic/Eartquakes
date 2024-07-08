@@ -13,6 +13,7 @@ struct MapMenuBgnd: View {
             .frame(width: 50, height: 130, alignment: .center)
             .foregroundStyle(Color.gray)
             .padding()
+            .opacity(0.8)
     }
 }
 

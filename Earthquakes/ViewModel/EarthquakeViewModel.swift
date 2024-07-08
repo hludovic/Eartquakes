@@ -11,10 +11,8 @@ import MapKit
 import SwiftUI
 
 @Observable final class EarthquakeViewModel {
-    private let resultLimit: Int = 200
-    var selectedEarthquake: String? = nil {
-        didSet { displayMapLocation(for: selectedEarthquake) }
-    }
+    private let resultLimit: Int = 300
+    var selectedEarthquake: String? = nil { didSet { displayMapLocation(for: selectedEarthquake) } }
     var earthquakes: [Earthquake] = []
     var filterdEarthquakes: [Earthquake] {
         guard !textSearch.isEmpty else { return earthquakes }
@@ -60,6 +58,10 @@ import SwiftUI
             error = fetchError
             isShowingError = true
         }
+    }
+
+    func resetMapButton() {
+        withAnimation { mapPosition = .automatic }
     }
 
     func titleGenerator() -> String {
@@ -122,11 +124,11 @@ private extension EarthquakeViewModel {
         }
     }
 
-    private func canDisplay(earthquakes: [Earthquake]) -> Bool {
+    func canDisplay(earthquakes: [Earthquake]) -> Bool {
         return earthquakes.count <= resultLimit ? true : false
     }
 
-    private func displayMapLocation(for earthquakeID: String?) {
+    func displayMapLocation(for earthquakeID: String?) {
         guard let earthquakeID else { return }
         guard let earthquake = filterdEarthquakes.first(where: { $0.id == earthquakeID }) else { return }
 

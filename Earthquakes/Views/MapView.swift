@@ -18,20 +18,23 @@ struct MapView: View {
             Map(position: $viewModel.mapPosition, interactionModes: [.pitch, .zoom, .pan]) {
                 ForEach(viewModel.mapLocations) { mapLocation in
                     Annotation(mapLocation.name, coordinate: mapLocation.coordinate) {
-                        ZStack {
-                            Circle()
-                                .foregroundStyle(Color.black)
-                                .frame(width: 21, height: 21)
-                            Circle()
-                                .foregroundStyle(Color.red)
-                                .frame(width: 20, height: 20)
-                        }
-                        .opacity(0.5)
+                        MapAnnotation()
                     }
                 }
             }
-            MapMenuView()
-                .environment(viewModel)
+            MapMenuBgnd()
+                .overlay {
+                    VStack(spacing: 15) {
+                        Button(action: { viewModel.resetMapButton() }) {
+                            ResetMapButton()
+                        }
+                        Divider()
+                            .frame(width: 40)
+                        Button(action: {}) {
+                            AskLocationButton()
+                        }
+                    }
+                }
         }
         .navigationTitle(viewModel.titleGenerator())
     }

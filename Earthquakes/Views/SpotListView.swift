@@ -29,7 +29,7 @@ struct SpotListView: View {
             }
         }
         .navigationTitle("Earthquakes")
-        .searchable(text: $viewModel.textSearch, prompt: "filter")
+        .searchable(text: $viewModel.textSearch, prompt: "Search...")
         .toolbar {
             ToolbarItem(placement: .automatic) {
                 Button("Search", systemImage: "line.3.horizontal.decrease.circle") {
@@ -41,7 +41,6 @@ struct SpotListView: View {
                 }
             }
         }
-        Spacer()
         Text(viewModel.bottomListCountString)
     }
 }

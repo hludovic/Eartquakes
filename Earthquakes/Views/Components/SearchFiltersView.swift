@@ -41,9 +41,7 @@ struct SearchFiltersView: View {
 }
 
 #Preview {
-    let viewModel = EarthquakeViewModel()
-    viewModel.earthquakes = Earthquake.mock
     return SearchFiltersView()
-        .environment(viewModel)
-        .border(Color.black)
+        .environment(EarthquakeViewModel())
+        .border(Color.black.opacity(0.2))
 }
