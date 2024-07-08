@@ -20,7 +20,7 @@ import SwiftUI
         guard !textSearch.isEmpty else { return earthquakes }
         return earthquakes.filter { $0.title.localizedStandardContains(textSearch) }
     }
-    var selectedCell: String? = nil { didSet { displayMapLocation(for: selectedCell) } }
+    var selectedCell: String? { didSet { displayMapLocation(for: selectedCell) } }
     var isShowingSearchFilter: Bool = false
     var selectedPeriod: SearchFilterContent.Period = .aDay
     var selectedStrength: SearchFilterContent.Magnitude = .overMag4_5
@@ -30,9 +30,7 @@ import SwiftUI
     var mapPosition: MapCameraPosition = .automatic
     var textSearch: String = ""
     var mapLocations: [MapLocation] { getMapLocations() }
-
     var navigationTitle = "No Earthquakes loaded"
-
 
     init(httpClient: Networking = HttpClient.shared, mockEarthquakes: [Earthquake] = []) {
         self.httpClient = httpClient
@@ -59,6 +57,7 @@ import SwiftUI
 
     func resetMapButton() {
         selectedCell = nil
+        withAnimation { mapPosition = .automatic }
     }
 
 }
@@ -128,9 +127,8 @@ private extension EarthquakeViewModel {
     }
 
     func displayMapLocation(for earthquakeID: String?) {
-        guard let earthquakeID else { return withAnimation { mapPosition = .automatic } }
+        guard let earthquakeID else { return }
         guard let earthquake = filterdEarthquakes.first(where: { $0.id == earthquakeID }) else { return }
-
         let position = MapCameraPosition.region(
             MKCoordinateRegion(
                 center: CLLocationCoordinate2D(
