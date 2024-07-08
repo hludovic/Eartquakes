@@ -31,7 +31,7 @@ struct SearchFiltersView: View {
                 ForEach(SearchFilterContent.Period.allCases) { Text($0.rawValue) }
             }
             .pickerStyle(.palette)
-            Button(action: { Task { await viewModel.fetch() } } ) {
+            Button(action: { Task { await viewModel.pressSearchButton() } } ) {
                 Text("Search Earthquakes")
             }
             .buttonStyle(SearchButtonStyle())

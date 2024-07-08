@@ -25,7 +25,7 @@ struct MapView: View {
             MapMenuBgnd()
                 .overlay {
                     VStack(spacing: 15) {
-                        Button(action: { viewModel.resetMapButton() }) {
+                        Button(action: { viewModel.pressResetMapButton() }) {
                             ResetMapButton()
                         }
                         Divider()

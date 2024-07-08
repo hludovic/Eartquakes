@@ -37,7 +37,7 @@ import SwiftUI
         self.earthquakes = mockEarthquakes
     }
 
-    func fetch() async {
+    func pressSearchButton() async {
         isShowingSearchFilter = false
         isLoading = true
         do {
@@ -55,11 +55,10 @@ import SwiftUI
         }
     }
 
-    func resetMapButton() {
+    func pressResetMapButton() {
         selectedCell = nil
         withAnimation { mapPosition = .automatic }
     }
-
 }
 
 private extension EarthquakeViewModel {
@@ -129,16 +128,14 @@ private extension EarthquakeViewModel {
     func displayMapLocation(for earthquakeID: String?) {
         guard let earthquakeID else { return }
         guard let earthquake = filterdEarthquakes.first(where: { $0.id == earthquakeID }) else { return }
-        let position = MapCameraPosition.region(
-            MKCoordinateRegion(
-                center: CLLocationCoordinate2D(
+
+        let position: MapCameraPosition = .camera(
+            MapCamera(
+                centerCoordinate: CLLocationCoordinate2D(
                     latitude: earthquake.latitude,
                     longitude: earthquake.longitude
                 ),
-                span: MKCoordinateSpan(
-                    latitudeDelta: 5,
-                    longitudeDelta: 5
-                )
+                distance: 10_000_000
             )
         )
         withAnimation { self.mapPosition = position }

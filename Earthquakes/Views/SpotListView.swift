@@ -28,7 +28,7 @@ struct SpotListView: View {
                     }
                     .tint(.gray.opacity(0.3))
                     .listStyle(.insetGrouped)
-                    .refreshable { await viewModel.fetch() }
+                    .refreshable { await viewModel.pressSearchButton() }
                 }
             }
         }

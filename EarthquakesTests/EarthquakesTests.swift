@@ -30,7 +30,7 @@ final class EarthquakesTests: XCTestCase {
 
         viewModel.selectedPeriod = .aMonth
         viewModel.selectedStrength = .significant
-        await viewModel.fetch()
+        await viewModel.pressSearchButton()
         XCTAssertEqual(viewModel.earthquakes.count, 12)
     }
 
@@ -39,7 +39,7 @@ final class EarthquakesTests: XCTestCase {
 
         viewModel.selectedPeriod = .aMonth
         viewModel.selectedStrength = .significant
-        await viewModel.fetch()
+        await viewModel.pressSearchButton()
         
         XCTAssertTrue(viewModel.isShowingError)
         XCTAssertEqual(viewModel.error.errorDescription, EarthquakeError.badUrlResponse.errorDescription)
