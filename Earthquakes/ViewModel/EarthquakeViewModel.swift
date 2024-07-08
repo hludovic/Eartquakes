@@ -12,7 +12,10 @@ import SwiftUI
 
 @Observable final class EarthquakeViewModel {
     private let resultLimit: Int = 300
-    private(set) var earthquakes: [Earthquake]
+    private(set) var earthquakes: [Earthquake] {
+        didSet { navigationTitle = earthquakes.isEmpty ? "No Earthquakes loaded" : titleGenerator() }
+    }
+    private(set) var isLoading: Bool = false
     var filterdEarthquakes: [Earthquake] {
         guard !textSearch.isEmpty else { return earthquakes }
         return earthquakes.filter { $0.title.localizedStandardContains(textSearch) }
@@ -28,6 +31,9 @@ import SwiftUI
     var textSearch: String = ""
     var mapLocations: [MapLocation] { getMapLocations() }
 
+    var navigationTitle = "No Earthquakes loaded"
+
+
     init(httpClient: Networking = HttpClient.shared, mockEarthquakes: [Earthquake] = []) {
         self.httpClient = httpClient
         self.earthquakes = mockEarthquakes
@@ -35,13 +41,17 @@ import SwiftUI
 
     func fetch() async {
         isShowingSearchFilter = false
+        isLoading = true
         do {
             try await fetchEarthquakes(since: paramPeriod, strength: paramStrength)
+            await MainActor.run { isLoading = false }
         } catch (let fetchError) {
             guard let fetchError = fetchError as? EarthquakeError else {
                 error = .unknown(message: fetchError.localizedDescription)
+                isLoading = false
                 return isShowingError = true
             }
+            await MainActor.run { isLoading = false }
             error = fetchError
             isShowingError = true
         }
@@ -51,34 +61,6 @@ import SwiftUI
         selectedCell = nil
     }
 
-    func titleGenerator() -> String {
-        var strengthString = ""
-        var perodString = ""
-        switch selectedStrength {
-        case .all:
-            strengthString = "All Earthquakes"
-        case .overMag1:
-            strengthString = "Magnitude 1+ Earthquakes"
-        case .overMag2_5:
-            strengthString = "Magnitude 2.5+ Earthquakes"
-        case .overMag4_5:
-            strengthString = "Magnitude 4.5+ Earthquakes"
-        case .significant:
-            strengthString = "Significant Earthquakes"
-        }
-
-        switch selectedPeriod {
-        case .oneHour:
-            perodString = ", Past Hour."
-        case .aDay:
-            perodString = ", Past Day."
-        case .aWeek:
-            perodString = ", Past 7 Days."
-        case .aMonth:
-            perodString = ", Past 30 Days."
-        }
-        return strengthString + perodString
-    }
 }
 
 private extension EarthquakeViewModel {
@@ -94,6 +76,36 @@ private extension EarthquakeViewModel {
         case .aMonth:
             return .aMonth
         }
+    }
+
+    func titleGenerator() -> String {
+        var header = ""
+        var strengthString = ""
+        var perodString = ""
+        switch selectedStrength {
+        case .all:
+            strengthString = "All Earthquakes"
+        case .overMag1:
+            strengthString = "Magnitude 1+ Earthquakes"
+        case .overMag2_5:
+            strengthString = "Magnitude 2.5+ Earthquakes"
+        case .overMag4_5:
+            strengthString = "Magnitude 4.5+ Earthquakes"
+        case .significant:
+            strengthString = "Significant Earthquakes"
+        }
+        switch selectedPeriod {
+        case .oneHour:
+            perodString = ", Past Hour."
+        case .aDay:
+            perodString = ", Past Day."
+        case .aWeek:
+            perodString = ", Past 7 Days."
+        case .aMonth:
+            perodString = ", Past 30 Days."
+        }
+        header = earthquakes.isEmpty ? "" : "(\(earthquakes.count)) "
+        return header + strengthString + perodString
     }
 
     var paramStrength: ApiJsonFeeds.Strength {

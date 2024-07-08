@@ -14,18 +14,22 @@ struct SpotListView: View {
         @Bindable var viewModel = viewModel
 
         Group {
-            if viewModel.earthquakes.isEmpty {
-                EmptyResultView()
+            if viewModel.isLoading {
+                LoadingIndicator()
             } else {
-                List(selection: $viewModel.selectedCell) {
-                    ForEach(viewModel.filterdEarthquakes) { content in
-                        SpotCellView(content: content)
-                            .tag(content.id)
+                if viewModel.earthquakes.isEmpty {
+                    EmptyResultView()
+                } else {
+                    List(selection: $viewModel.selectedCell) {
+                        ForEach(viewModel.filterdEarthquakes) { content in
+                            SpotCellView(content: content)
+                                .tag(content.id)
+                        }
                     }
+                    .tint(.gray.opacity(0.3))
+                    .listStyle(.insetGrouped)
+                    .refreshable { await viewModel.fetch() }
                 }
-                .tint(.gray.opacity(0.3))
-                .listStyle(.insetGrouped)
-                .refreshable { await viewModel.fetch() }
             }
         }
         .navigationTitle("Earthquakes")

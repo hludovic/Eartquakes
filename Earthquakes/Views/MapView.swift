@@ -36,7 +36,7 @@ struct MapView: View {
                     }
                 }
         }
-        .navigationTitle(viewModel.titleGenerator())
+        .navigationTitle(viewModel.navigationTitle)
     }
 }
 
