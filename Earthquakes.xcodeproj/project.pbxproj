@@ -25,7 +25,7 @@
 		437EECFD2B84420B0014A5BE /* significant_month.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 43186EE02B843DA90078E2D0 /* significant_month.geojson */; };
 		437EECFF2B8447760014A5BE /* MockHttpClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 437EECFE2B8447760014A5BE /* MockHttpClient.swift */; };
 		439150E52C16762F00877ABB /* EmptyResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439150E42C16762F00877ABB /* EmptyResultView.swift */; };
-		439B63C42B8456C20019C0EB /* SpotListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439B63C32B8456C20019C0EB /* SpotListView.swift */; };
+		439B63C42B8456C20019C0EB /* EarthquakesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 439B63C32B8456C20019C0EB /* EarthquakesView.swift */; };
 		43A12D442C3A292C003F8776 /* InspectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43A12D432C3A292C003F8776 /* InspectorView.swift */; };
 		43B5B7942C372CC1008CB244 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B5B7932C372CC1008CB244 /* View+Extension.swift */; };
 		43B5C83F2C3B8DE6002A10AD /* ResetMapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B5C83E2C3B8DE6002A10AD /* ResetMapButton.swift */; };
@@ -70,7 +70,7 @@
 		437EECF52B84409E0014A5BE /* EarthquakesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakesTests.swift; sourceTree = "<group>"; };
 		437EECFE2B8447760014A5BE /* MockHttpClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHttpClient.swift; sourceTree = "<group>"; };
 		439150E42C16762F00877ABB /* EmptyResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyResultView.swift; sourceTree = "<group>"; };
-		439B63C32B8456C20019C0EB /* SpotListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListView.swift; sourceTree = "<group>"; };
+		439B63C32B8456C20019C0EB /* EarthquakesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarthquakesView.swift; sourceTree = "<group>"; };
 		43A12D432C3A292C003F8776 /* InspectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectorView.swift; sourceTree = "<group>"; };
 		43B5B7932C372CC1008CB244 /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		43B5C83E2C3B8DE6002A10AD /* ResetMapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetMapButton.swift; sourceTree = "<group>"; };
@@ -129,9 +129,9 @@
 			isa = PBXGroup;
 			children = (
 				437E2D932B60ABD900ED6C51 /* ContentView.swift */,
-				439B63C32B8456C20019C0EB /* SpotListView.swift */,
 				43F667112C0FF65D009626E7 /* MapView.swift */,
 				43A12D432C3A292C003F8776 /* InspectorView.swift */,
+				439B63C32B8456C20019C0EB /* EarthquakesView.swift */,
 				434E29802C375FFB00B317AD /* Components */,
 			);
 			path = Views;
@@ -340,7 +340,7 @@
 				43B5C8412C3B8E18002A10AD /* AskLocationButton.swift in Sources */,
 				435BF3CC2C0BDE3F007ED751 /* Date+Extension.swift in Sources */,
 				437E2D942B60ABD900ED6C51 /* ContentView.swift in Sources */,
-				439B63C42B8456C20019C0EB /* SpotListView.swift in Sources */,
+				439B63C42B8456C20019C0EB /* EarthquakesView.swift in Sources */,
 				435F76452C3C4A4900EFF44A /* LoadingIndicator.swift in Sources */,
 				43F667122C0FF65D009626E7 /* MapView.swift in Sources */,
 				43DDF52E2C3C4316004B59E3 /* SearchButtonStyle.swift in Sources */,

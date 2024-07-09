@@ -41,7 +41,6 @@ struct SearchFiltersView: View {
     }
 }
 
-
 #Preview {
     return SearchFiltersView()
         .environment(EarthquakeViewModel())
