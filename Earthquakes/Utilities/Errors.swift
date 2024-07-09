@@ -11,7 +11,6 @@ enum EarthquakeError: LocalizedError {
     case badUrlResponse
     case failDecodingData
     case invalidURL
-//    case cantFetch
     case tooManyResult(count: Int)
     case unknown(message: String)
 
@@ -23,8 +22,6 @@ enum EarthquakeError: LocalizedError {
             "Error Decoding Data"
         case .invalidURL:
             "Invalid URL"
-//        case .cantFetch:
-//            "Invalid Request"
         case .unknown(message: _):
             "Error Encountered"
         case .tooManyResult(count: _):
@@ -40,8 +37,6 @@ enum EarthquakeError: LocalizedError {
             "An error occurred while processing the data."
         case .invalidURL:
             "Unable to communicate with the server."
-//        case .cantFetch:
-//            "The request is invalid or has been blocked."
         case .unknown(message: let message):
             message
         case .tooManyResult(count: let count):

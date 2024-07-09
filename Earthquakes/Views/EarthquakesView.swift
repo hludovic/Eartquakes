@@ -23,7 +23,7 @@ struct EarthquakesView: View {
                     List(selection: $viewModel.selectedCell) {
                         ForEach(viewModel.filterdEarthquakes) { content in
                             SpotCellView(content: content)
-                                .tag(content.id)
+                                .tag(content)
                         }
                     }
                     .tint(.gray.opacity(0.3))

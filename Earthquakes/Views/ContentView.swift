@@ -8,16 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var viewModel = EarthquakeViewModel()
+    @Environment(EarthquakeViewModel.self) private var viewModel
+    @State private var isShowingInspector = true
 
     var body: some View {
+        @Bindable var viewModel = viewModel
+        
         NavigationSplitView {
             EarthquakesView()
-                .environment(viewModel)
         } detail: {
             MapView()
-                .environment(viewModel)
                 .navigationBarTitleDisplayMode(.inline)
+                .inspector(isPresented: $isShowingInspector){
+                    InspectorView(earthquake: $viewModel.selectedCell)
+                }
+                .toolbar {
+                    Spacer()
+                    Button {
+                        isShowingInspector.toggle()
+                    } label: {
+                        Label("Inspector", systemImage: "info.circle")
+                    }
+                }
         }
         .alert(isPresented: $viewModel.isShowingError, error: viewModel.error) { error in
             Button("OK") { viewModel.isShowingError = false }
@@ -29,4 +41,8 @@ struct ContentView: View {
 
 #Preview {
     return ContentView()
+        .environment(EarthquakeViewModel(mockEarthquakes: Earthquake.mock))
 }
+
+
+

@@ -37,6 +37,7 @@ struct SearchFiltersView: View {
             .buttonStyle(SearchButtonStyle())
             .padding(.top)
         }
+        .presentationBackground(.thinMaterial)
         .frame(width: 450)
     }
 }

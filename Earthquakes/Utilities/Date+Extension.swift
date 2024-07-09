@@ -23,4 +23,11 @@ extension Date {
         return formatter.localizedString(for: self, relativeTo: Date())
     }
 
+    func toString() -> String {
+        let formater = DateFormatter()
+        formater.dateStyle = .short
+        formater.timeStyle = .short
+        return formater.string(from: self)
+    }
+
 }

@@ -20,7 +20,7 @@ import SwiftUI
         guard !textSearch.isEmpty else { return earthquakes }
         return earthquakes.filter { $0.title.localizedStandardContains(textSearch) }
     }
-    var selectedCell: String? { didSet { displayMapLocation(for: selectedCell) } }
+    var selectedCell: Earthquake? { didSet { displayMapLocation(for: selectedCell?.id) } }
     var isShowingSearchFilter: Bool = false
     var selectedPeriod: SearchFilterContent.Period = .aDay
     var selectedStrength: SearchFilterContent.Magnitude = .overMag4_5

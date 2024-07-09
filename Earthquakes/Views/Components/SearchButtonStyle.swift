@@ -17,7 +17,7 @@ struct SearchButtonStyle: ButtonStyle {
 }
 
 #Preview {
-    Button(action: { print("Pressed") }) {
+    Button(action: {}) {
         Label("Press Me", systemImage: "star")
     }
     .buttonStyle(SearchButtonStyle())
