@@ -22,6 +22,7 @@ import SwiftUI
     }
     var selectedCell: Earthquake? { didSet { displayMapLocation(for: selectedCell?.id) } }
     var isShowingSearchFilter: Bool = false
+    var isShowingInspector = false
     var selectedPeriod: SearchFilterContent.Period = .aDay
     var selectedStrength: SearchFilterContent.Magnitude = .overMag4_5
     var isShowingError: Bool = false

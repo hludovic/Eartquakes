@@ -35,7 +35,9 @@ extension EarthquakeViewModel {
                     title: feature.properties.title,
                     longitude: feature.geometry.coordinates[0],
                     latitude: feature.geometry.coordinates[1],
-                    depth: feature.geometry.coordinates[2])
+                    depth: feature.geometry.coordinates[2],
+                    status: feature.properties.status
+                )
                 result.append(earthquake)
             }
             earthquakes = result
@@ -71,6 +73,8 @@ extension EarthquakeViewModel {
                 let sig: Int
                 let type: String
                 let title: String
+                let status: String
+
             }
 
             struct Geometry: Decodable {

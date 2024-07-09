@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(EarthquakeViewModel.self) private var viewModel
-    @State private var isShowingInspector = true
 
     var body: some View {
         @Bindable var viewModel = viewModel
@@ -19,16 +18,15 @@ struct ContentView: View {
         } detail: {
             MapView()
                 .navigationBarTitleDisplayMode(.inline)
-                .inspector(isPresented: $isShowingInspector){
+                .inspector(isPresented: $viewModel.isShowingInspector){
                     InspectorView(earthquake: $viewModel.selectedCell)
                 }
                 .toolbar {
                     Spacer()
-                    Button {
-                        isShowingInspector.toggle()
-                    } label: {
+                    Button {  viewModel.isShowingInspector.toggle() } label: {
                         Label("Inspector", systemImage: "info.circle")
                     }
+                    .disabled(viewModel.selectedCell == nil)
                 }
         }
         .alert(isPresented: $viewModel.isShowingError, error: viewModel.error) { error in

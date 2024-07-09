@@ -30,7 +30,8 @@ extension Earthquake {
             title: "M 4.8 - 3 km NNW of El Centro, CA",
             longitude:  -115.5735,
             latitude: 32.8135,
-            depth: 46.08
+            depth: 46.08,
+            status: "reviewed"
         ),
         Earthquake(
             id: "e0f80929-4130-40d1-90ae-291b3e7e4ad1",
@@ -46,7 +47,8 @@ extension Earthquake {
             title: "M 6.3 - 51 km NNE of Port-Olry, Vanuatu",
             longitude:  -115.5735,
             latitude: 32.8135,
-            depth: 33.77
+            depth: 33.77,
+            status: "reviewed"
         ),
         Earthquake(
             id: "92d5dffe-b2fd-419c-b6d1-e7311e716b94",
@@ -62,7 +64,8 @@ extension Earthquake {
             title: "M 4.8 - 3 km NNW of El Centro, CA",
             longitude:  -115.5735,
             latitude: 32.8135,
-            depth: 36.311
+            depth: 36.311,
+            status: "reviewed"
         ),
         Earthquake(
             id: "2fe4f233-a1cc-4869-aa3d-617dd21b27fe",
@@ -78,7 +81,8 @@ extension Earthquake {
             title: "M 4.8 - 3 km NNW of El Centro, CA",
             longitude:  -115.5735,
             latitude: 32.8135,
-            depth: 57.745
+            depth: 57.745,
+            status: "reviewed"
         )
     ]
 }

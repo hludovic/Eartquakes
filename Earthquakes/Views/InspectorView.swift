@@ -37,21 +37,21 @@ struct InspectorView: View {
                     Text("Review Status")
                         .bold()
                     Spacer()
-                    Text("REVIEWED")
+                    Text(earthquake?.status.uppercased() ?? "")
                         .italic()
                 }
                 HStack {
                     Text("Magnitude")
                         .bold()
                     Spacer()
-                    Text("\(earthquake?.magnitude.description ?? "") mw")
+                    Text(stringMagnitude())
                         .italic()
                 }
                 HStack {
                     Text("Depth")
                         .bold()
                     Spacer()
-                    Text("\(earthquake?.depth.description ?? "") km")
+                    Text(stringDepth())
                         .italic()
                 }
                 HStack {
@@ -59,6 +59,13 @@ struct InspectorView: View {
                         .bold()
                     Spacer()
                     Text(earthquake?.time.toString() ?? "")
+                        .italic()
+                }
+                HStack {
+                    Text("Updated")
+                        .bold()
+                    Spacer()
+                    Text(earthquake?.updated.toString() ?? "")
                         .italic()
                 }
             }
@@ -78,6 +85,16 @@ struct InspectorView: View {
                     .italic()
             }
         }
+    }
+
+    func stringDepth() -> String {
+        guard let earthquake else { return "" }
+        return "\(earthquake.depth.description) km"
+    }
+
+    func stringMagnitude() -> String {
+        guard let earthquake else { return "" }
+        return "\(earthquake.magnitude.description) mw"
     }
 }
 
