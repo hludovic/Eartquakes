@@ -23,7 +23,6 @@ struct EmptyResultView: View {
             Spacer()
         }
         .listRowSeparator(.hidden, edges: .all)
-
     }
 }
 

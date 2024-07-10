@@ -26,7 +26,7 @@ struct ContentView: View {
                     Button {  viewModel.isShowingInspector.toggle() } label: {
                         Label("Inspector", systemImage: "info.circle")
                     }
-                    .disabled(viewModel.selectedCell == nil)
+                    .disabled(viewModel.isInspectorDisabled)
                 }
         }
         .alert(isPresented: $viewModel.isShowingError, error: viewModel.error) { error in

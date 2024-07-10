@@ -23,14 +23,17 @@ import SwiftUI
     var selectedCell: Earthquake? { didSet { displayMapLocation(for: selectedCell?.id) } }
     var isShowingSearchFilter: Bool = false
     var isShowingInspector = false
+    var isShowingError: Bool = false
+    var isInspectorDisabled: Bool {
+        guard !isShowingInspector else { return false }
+        return selectedCell == nil ? true : false
+    }
     var selectedPeriod: SearchFilterContent.Period = .aDay
     var selectedStrength: SearchFilterContent.Magnitude = .overMag4_5
-    var isShowingError: Bool = false
     var error: EarthquakeError = .unknown(message: "")
     let httpClient: Networking
     var mapPosition: MapCameraPosition = .automatic
     var textSearch: String = ""
-    var mapLocations: [MapLocation] { getMapLocations() }
     var navigationTitle = "No Earthquakes loaded"
 
     init(httpClient: Networking = HttpClient.shared, mockEarthquakes: [Earthquake] = []) {
@@ -149,23 +152,11 @@ private extension EarthquakeViewModel {
         let decodedEarthquakes: DecodedEarthquakes = try await httpClient.fetch(url: url, dateDecodingStrategy: .millisecondsSince1970)
         let result = decodedEarthquakes.earthquakes
         guard canDisplay(earthquakes: result) else { throw EarthquakeError.tooManyResult(count: result.count)}
-        await MainActor.run { withAnimation { earthquakes = result } }
-    }
-
-    func getMapLocations() -> [MapLocation] {
-        guard !earthquakes.isEmpty else { return [] }
-        var locations: [MapLocation] = []
-        for earthquake in earthquakes {
-            let mapLocation = MapLocation(
-                name: earthquake.title,
-                coordinate: CLLocationCoordinate2D(
-                    latitude: earthquake.latitude,
-                    longitude: earthquake.longitude
-                )
-            )
-            locations.append(mapLocation)
+        await MainActor.run {
+            selectedCell = nil
+            earthquakes = []
+            withAnimation { earthquakes = result }
         }
-        return locations
     }
 }
 

@@ -16,9 +16,26 @@ struct MapView: View {
 
         ZStack(alignment: .topTrailing) {
             Map(position: $viewModel.mapPosition, interactionModes: [.pitch, .zoom, .pan]) {
-                ForEach(viewModel.mapLocations) { mapLocation in
-                    Annotation(mapLocation.name, coordinate: mapLocation.coordinate) {
-                        MapAnnotation()
+                ForEach(viewModel.earthquakes) { mapLocation in
+                    Annotation(mapLocation.title, coordinate: mapLocation.coordinate) {
+                        ZStack {
+                            Circle()
+                                .foregroundStyle(Color.black)
+                                .frame(
+                                    width: mapLocation.pointLocationRadius + 1,
+                                    height: mapLocation.pointLocationRadius + 1
+                                )
+                            Circle()
+                                .foregroundStyle(Color.red)
+                                .frame(
+                                    width: mapLocation.pointLocationRadius,
+                                    height: mapLocation.pointLocationRadius
+                                )
+                        }
+                        .opacity(0.4)
+                        .onTapGesture {
+                            viewModel.selectedCell = mapLocation
+                        }
                     }
                 }
             }
