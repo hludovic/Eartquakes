@@ -22,14 +22,14 @@ struct MapView: View {
                             Circle()
                                 .foregroundStyle(Color.black)
                                 .frame(
-                                    width: mapLocation.pointLocationRadius + 1,
-                                    height: mapLocation.pointLocationRadius + 1
+                                    width: mapLocation.mapItemRadius + 1,
+                                    height: mapLocation.mapItemRadius + 1
                                 )
                             Circle()
                                 .foregroundStyle(Color.red)
                                 .frame(
-                                    width: mapLocation.pointLocationRadius,
-                                    height: mapLocation.pointLocationRadius
+                                    width: mapLocation.mapItemRadius,
+                                    height: mapLocation.mapItemRadius
                                 )
                         }
                         .opacity(0.4)
@@ -39,19 +39,7 @@ struct MapView: View {
                     }
                 }
             }
-            MapMenuBgnd()
-                .overlay {
-                    VStack(spacing: 15) {
-                        Button(action: { viewModel.pressResetMapButton() }) {
-                            ResetMapButton()
-                        }
-                        Divider()
-                            .frame(width: 40)
-                        Button(action: {}) {
-                            AskLocationButton()
-                        }
-                    }
-                }
+            MapButtons()
         }
         .navigationTitle(viewModel.navigationTitle)
     }

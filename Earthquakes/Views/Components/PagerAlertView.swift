@@ -70,6 +70,4 @@ struct PagerAlertView: View {
 
 #Preview {
     PagerAlertView(earthquake: .constant(Earthquake.mock.first))
-        .frame(width: 120, height: 100, alignment: .center)
-        .border(Color.black)
 }

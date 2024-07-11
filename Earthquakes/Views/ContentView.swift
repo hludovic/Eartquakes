@@ -41,6 +41,3 @@ struct ContentView: View {
     return ContentView()
         .environment(EarthquakeViewModel(mockEarthquakes: Earthquake.mock))
 }
-
-
-

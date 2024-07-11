@@ -45,5 +45,4 @@ struct SearchFiltersView: View {
 #Preview {
     return SearchFiltersView()
         .environment(EarthquakeViewModel())
-        .border(Color.black.opacity(0.2))
 }

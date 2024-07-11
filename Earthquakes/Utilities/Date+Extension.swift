@@ -39,5 +39,4 @@ extension Date {
         formater.timeStyle = .short
         return formater.string(from: self)
     }
-
 }

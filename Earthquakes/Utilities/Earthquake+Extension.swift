@@ -15,7 +15,7 @@ extension Earthquake {
     }
     
     /// Returns a radius for the point that serves as an annotation to the Earthquake on the map.
-    var pointLocationRadius: CGFloat {
+    var mapItemRadius: CGFloat {
         switch magnitude {
         case ..<1:
             return 10

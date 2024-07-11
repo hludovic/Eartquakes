@@ -152,9 +152,7 @@ private extension EarthquakeViewModel {
         guard canDisplay(earthquakes: result) else { throw EarthquakeError.tooManyResult(count: result.count)}
         await MainActor.run {
             selectedCell = nil
-            earthquakes = []
             withAnimation { earthquakes = result }
         }
     }
 }
-
