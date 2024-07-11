@@ -42,17 +42,19 @@ import SwiftUI
 
     func pressSearchButton() async {
         isShowingSearchFilter = false
-        isLoading = true
+        withAnimation { isLoading = true }
         do {
             try await fetchEarthquakes(since: paramPeriod, strength: paramStrength)
-            await MainActor.run { isLoading = false }
+            await MainActor.run { withAnimation { isLoading = false } }
         } catch (let fetchError) {
             guard let fetchError = fetchError as? EarthquakeError else {
                 error = .unknown(message: fetchError.localizedDescription)
+                withAnimation { isLoading = false }
                 isLoading = false
                 return isShowingError = true
             }
-            await MainActor.run { isLoading = false }
+            await MainActor.run { withAnimation { isLoading = false }
+            }
             error = fetchError
             isShowingError = true
         }

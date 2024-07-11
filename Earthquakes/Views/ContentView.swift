@@ -12,7 +12,7 @@ struct ContentView: View {
 
     var body: some View {
         @Bindable var viewModel = viewModel
-        
+
         NavigationSplitView {
             EarthquakesView()
         } detail: {
@@ -34,6 +34,7 @@ struct ContentView: View {
         } message: { error in
             Text(error.failureReason)
         }
+        .overlay { if viewModel.isLoading { LoadingView() } }
     }
 }
 

@@ -14,21 +14,17 @@ struct EarthquakesView: View {
         @Bindable var viewModel = viewModel
 
         Group {
-            if viewModel.isLoading {
-                LoadingIndicator()
+            if viewModel.earthquakes.isEmpty {
+                EmptyResultView()
             } else {
-                if viewModel.earthquakes.isEmpty {
-                    EmptyResultView()
-                } else {
-                    List(selection: $viewModel.selectedCell) {
-                        ForEach(viewModel.filterdEarthquakes) { content in
-                            SpotCellView(content: content)
-                                .tag(content)
-                        }
+                List(selection: $viewModel.selectedCell) {
+                    ForEach(viewModel.filterdEarthquakes) { content in
+                        SpotCellView(content: content)
+                            .tag(content)
                     }
-                    .tint(.gray.opacity(0.3))
-                    .listStyle(.insetGrouped)
                 }
+                .tint(.gray.opacity(0.3))
+                .listStyle(.insetGrouped)
             }
         }
         .navigationTitle("Earthquakes")

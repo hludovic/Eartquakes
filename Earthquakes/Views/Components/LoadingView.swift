@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct LoadingIndicator: View {
+struct LoadingView: View {
     var body: some View {
         ZStack {
-            Color.black
-                .opacity(0.2)
+            Rectangle()
+                .background(.thinMaterial)
+                .opacity(0.9)
                 .ignoresSafeArea()
             VStack {
                 ProgressView()
@@ -21,15 +22,15 @@ struct LoadingIndicator: View {
                 Text("Loading...")
                     .padding(.top)
                     .font(.title2)
-                    .foregroundStyle(.gray)
+                    .foregroundStyle(.secondary)
             }
             .padding()
-            .background(.thinMaterial, in: (RoundedRectangle(cornerRadius: 16.0))
+            .background(.thickMaterial, in: (RoundedRectangle(cornerRadius: 16.0))
             )
         }
     }
 }
 
 #Preview {
-    LoadingIndicator()
+    LoadingView()
 }
