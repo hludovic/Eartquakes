@@ -8,7 +8,7 @@
 import Foundation
 
 extension EarthquakeViewModel {
-
+    /// A structure that decodes the API responses and creates a list of `Earthquake` based on the data it contains.
     struct DecodedEarthquakes: Decodable {
         let count: Int
         let title: String
@@ -16,10 +16,8 @@ extension EarthquakeViewModel {
 
         init(from decoder: Decoder) throws {
             var result: [Earthquake] = []
-
             let rawEarthquake = try RawResponse(from: decoder)
             let features = rawEarthquake.features
-
             for feature in features {
                 let earthquake = Earthquake(
                     id: feature.id,
@@ -45,7 +43,8 @@ extension EarthquakeViewModel {
             title = rawEarthquake.metadata.title
         }
     }
-
+    
+    /// A structure that represents the data returned by the API after a request.
     private struct RawResponse: Decodable {
         let type: String
         let metadata: Metadata
@@ -74,7 +73,6 @@ extension EarthquakeViewModel {
                 let type: String
                 let title: String
                 let status: String
-
             }
 
             struct Geometry: Decodable {

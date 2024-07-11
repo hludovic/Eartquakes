@@ -5,6 +5,12 @@
 //  Created by Ludovic HENRY on 30/01/2024.
 //
 
+/// Contains the global constants used in this application.
+struct Constants {
+    /// The maximum amount of elements that can be displayed in the `EarthquakesView` and on the `MapView`.
+    static let resultLimit: Int = 300
+}
+
 struct ApiJsonFeeds {
     static let baseURL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/"
     static let endpoint = "summary"

@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// The main data of the application. Represents an earthquake and all the data used by this application.
 struct Earthquake: Identifiable, Hashable {
     let id: String
     let magnitude: Float

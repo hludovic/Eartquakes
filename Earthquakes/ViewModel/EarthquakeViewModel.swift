@@ -11,16 +11,14 @@ import MapKit
 import SwiftUI
 
 @Observable final class EarthquakeViewModel {
-    private let resultLimit: Int = 300
     private(set) var earthquakes: [Earthquake] {
         didSet { navigationTitle = earthquakes.isEmpty ? "No Earthquakes loaded" : titleGenerator() }
     }
-    private(set) var isLoading: Bool = false
     var filterdEarthquakes: [Earthquake] {
         guard !textSearch.isEmpty else { return earthquakes }
         return earthquakes.filter { $0.title.localizedStandardContains(textSearch) }
     }
-    var selectedCell: Earthquake? { didSet { displayMapLocation(for: selectedCell?.id) } }
+    private(set) var isLoading: Bool = false
     var isShowingSearchFilter: Bool = false
     var isShowingInspector = false
     var isShowingError: Bool = false
@@ -28,13 +26,14 @@ import SwiftUI
         guard !isShowingInspector else { return false }
         return selectedCell == nil ? true : false
     }
+    var selectedCell: Earthquake? { didSet { displayMapLocation(for: selectedCell?.id) } }
     var selectedPeriod: SearchFilterContent.Period = .aDay
     var selectedStrength: SearchFilterContent.Magnitude = .overMag4_5
     var error: EarthquakeError = .unknown(message: "")
-    let httpClient: Networking
     var mapPosition: MapCameraPosition = .automatic
     var textSearch: String = ""
     var navigationTitle = "No Earthquakes loaded"
+    let httpClient: Networking
 
     init(httpClient: Networking = HttpClient.shared, mockEarthquakes: [Earthquake] = []) {
         self.httpClient = httpClient
@@ -66,7 +65,6 @@ import SwiftUI
 }
 
 private extension EarthquakeViewModel {
-
     var paramPeriod: ApiJsonFeeds.Period {
         switch selectedPeriod {
         case .oneHour:
@@ -126,7 +124,7 @@ private extension EarthquakeViewModel {
     }
 
     func canDisplay(earthquakes: [Earthquake]) -> Bool {
-        return earthquakes.count <= resultLimit ? true : false
+        return earthquakes.count <= Constants.resultLimit ? true : false
     }
 
     func displayMapLocation(for earthquakeID: String?) {
