@@ -8,58 +8,57 @@
 import SwiftUI
 
 struct PagerAlertView: View {
-    enum AlertColor: String {
+    private enum AlertColor: String {
         case green = "green"
         case yellow = "yellow"
         case orange = "orange"
         case red = "red"
-        case unknown = "unknown"
+        case unknown = "None"
     }
-    @Binding var earthquake: Earthquake?
+    var earthquake: Earthquake?
+    private var color: AlertColor { convertStringColor(earthquake: earthquake) }
 
     var body: some View {
-        let color: AlertColor = convertStringColor(earthquake: earthquake)
-
         switch color {
         case .green:
             return HStack {
                 Color.green
                     .frame(width: 20, height: 20)
-                Text("Green")
+                Text(AlertColor.green.rawValue.capitalized)
                     .italic()
             }
         case .yellow:
             return HStack {
                 Color.yellow
                     .frame(width: 20, height: 20)
-                Text("Yellow")
+                Text(AlertColor.yellow.rawValue.capitalized)
                     .italic()
             }
         case .orange:
             return HStack {
                 Color.orange
                     .frame(width: 20, height: 20)
-                Text("Orange")
+                Text(AlertColor.orange.rawValue.capitalized)
                     .italic()
             }
         case .red:
             return HStack {
                 Color.red
                     .frame(width: 20, height: 20)
-                Text("Red")
+                Text(AlertColor.red.rawValue.capitalized)
                     .italic()
             }
         case .unknown:
             return HStack {
                 Color.white
                     .frame(width: 20, height: 20)
-                Text("Unknown")
+                Text(AlertColor.unknown.rawValue.capitalized)
                     .italic()
             }
         }
     }
 
-    func convertStringColor(earthquake: Earthquake?) -> AlertColor {
+    private func convertStringColor(earthquake: Earthquake?) -> AlertColor {
         guard let earthquake else { return AlertColor.unknown }
         guard let stringColor = earthquake.alert else { return AlertColor.unknown }
         let stringFormated = stringColor.lowercased()
@@ -69,5 +68,5 @@ struct PagerAlertView: View {
 }
 
 #Preview {
-    PagerAlertView(earthquake: .constant(Earthquake.mock.first))
+    PagerAlertView(earthquake: Earthquake.mock.first)
 }

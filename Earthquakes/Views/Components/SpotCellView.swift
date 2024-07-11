@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SpotCellView: View {
-    @State var content: Earthquake
+    var content: Earthquake
     
     var body: some View {
 

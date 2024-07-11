@@ -19,7 +19,7 @@ struct ContentView: View {
             MapView()
                 .navigationBarTitleDisplayMode(.inline)
                 .inspector(isPresented: $viewModel.isShowingInspector){
-                    InspectorView(earthquake: $viewModel.selectedCell)
+                    InspectorView(earthquake: viewModel.selectedCell)
                 }
                 .toolbar {
                     Spacer()

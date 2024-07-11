@@ -17,25 +17,10 @@ struct MapView: View {
         ZStack(alignment: .topTrailing) {
             Map(position: $viewModel.mapPosition, interactionModes: [.pitch, .zoom, .pan]) {
                 ForEach(viewModel.earthquakes) { mapLocation in
-                    Annotation(mapLocation.title, coordinate: mapLocation.coordinate) {
-                        ZStack {
-                            Circle()
-                                .foregroundStyle(Color.black)
-                                .frame(
-                                    width: mapLocation.mapItemRadius + 1,
-                                    height: mapLocation.mapItemRadius + 1
-                                )
-                            Circle()
-                                .foregroundStyle(Color.red)
-                                .frame(
-                                    width: mapLocation.mapItemRadius,
-                                    height: mapLocation.mapItemRadius
-                                )
-                        }
-                        .opacity(0.4)
-                        .onTapGesture {
-                            viewModel.selectedCell = mapLocation
-                        }
+                    Annotation(mapLocation.title, coordinate: mapLocation.coordinate) { 
+                        MapItemView(radius: mapLocation.mapItemRadius)
+                            .onTapGesture { viewModel.selectedCell = mapLocation }
+
                     }
                 }
             }
@@ -48,5 +33,4 @@ struct MapView: View {
 #Preview {
     return MapView()
         .environment(EarthquakeViewModel(mockEarthquakes: Earthquake.mock))
-
 }

@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct InspectorView: View {
-    @Binding var earthquake: Earthquake?
+    var earthquake: Earthquake?
 
     var body: some View {
         Form {
             Section("Location") {
                 Text("Place")
                     .bold()
-                Text(earthquake?.title ?? "")
+                Text(earthquake?.place ?? "")
                     .italic()
                 HStack {
                     Text("Longitude")
@@ -74,7 +74,7 @@ struct InspectorView: View {
                     Text("Alert")
                         .bold()
                     Spacer()
-                    PagerAlertView(earthquake: $earthquake)
+                    PagerAlertView(earthquake: earthquake)
                         .italic()
                 }
             }
@@ -99,7 +99,7 @@ struct InspectorView: View {
 }
 
 #Preview {
-    InspectorView(earthquake: .constant(Earthquake.mock.first!))
+    InspectorView(earthquake: Earthquake.mock.first!)
         .frame(width: 300, height: 700)
         .border(Color.black)
 }
