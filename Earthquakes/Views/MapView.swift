@@ -22,6 +22,16 @@ struct MapView: View {
                             .onTapGesture { viewModel.selectedCell = mapLocation }
                     }
                 }
+                if viewModel.selectedCell != nil {
+                    Annotation(
+                        viewModel.selectedCell!.title,
+                        coordinate: viewModel.selectedCell!.coordinate) {
+                            MapItemView(
+                                radius: viewModel.selectedCell!.mapItemRadius,
+                                isSelected: true
+                            )
+                        }
+                }
             }
             MapButtons()
         }

@@ -11,6 +11,7 @@ import MapKit
 import SwiftUI
 
 @Observable final class EarthquakeViewModel {
+    enum DisplayRange { case first, last }
     private(set) var earthquakes: [Earthquake] {
         didSet { navigationTitle = earthquakes.isEmpty ? "No Earthquakes loaded" : titleGenerator() }
     }
@@ -58,8 +59,6 @@ import SwiftUI
         guard fetchResult.count <= Constants.resultLimit else { return error = EarthquakeError.tooManyResult(result: fetchResult) }
         displayEarthquakes(result: fetchResult)
     }
-
-    enum DisplayRange { case first, last }
 
     func displayEarthquakes(result: [Earthquake], range: DisplayRange = .first) {
         selectedCell = nil
