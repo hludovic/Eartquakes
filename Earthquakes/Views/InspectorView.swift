@@ -101,5 +101,4 @@ struct InspectorView: View {
 #Preview {
     InspectorView(earthquake: Earthquake.mock.first!)
         .frame(width: 300, height: 700)
-        .border(Color.black)
 }

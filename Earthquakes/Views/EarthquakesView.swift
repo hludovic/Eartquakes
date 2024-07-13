@@ -36,7 +36,6 @@ struct EarthquakesView: View {
                 }
                 .popover(isPresented: $viewModel.isShowingSearchView) {
                     SearchFiltersView()
-                        .padding()
                 }
             }
         }
@@ -45,7 +44,7 @@ struct EarthquakesView: View {
 
 #Preview {
     NavigationStack {
-        return EarthquakesView()
+        EarthquakesView()
             .environment(EarthquakeViewModel(mockEarthquakes: Earthquake.mock))
     }
 }

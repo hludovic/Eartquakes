@@ -126,8 +126,8 @@
 		4320C76D2B69408D00DFBF36 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				43F667112C0FF65D009626E7 /* MapView.swift */,
 				437E2D932B60ABD900ED6C51 /* ContentView.swift */,
+				43F667112C0FF65D009626E7 /* MapView.swift */,
 				43A12D432C3A292C003F8776 /* InspectorView.swift */,
 				439B63C32B8456C20019C0EB /* EarthquakesView.swift */,
 				434E29802C375FFB00B317AD /* Components */,
@@ -520,7 +520,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -552,7 +552,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

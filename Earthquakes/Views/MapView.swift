@@ -30,6 +30,6 @@ struct MapView: View {
 }
 
 #Preview {
-    return MapView()
+    MapView()
         .environment(EarthquakeViewModel(mockEarthquakes: Earthquake.mock))
 }

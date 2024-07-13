@@ -39,6 +39,7 @@ struct SearchFiltersView: View {
         }
         .presentationBackground(.thinMaterial)
         .frame(width: 450)
+        .padding()
     }
 }
 
