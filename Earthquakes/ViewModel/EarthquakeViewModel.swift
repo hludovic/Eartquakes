@@ -42,34 +42,33 @@ import SwiftUI
     }
 
     func pressSearchButton() async {
-        var fetchResult: [Earthquake] = []
         isShowingSearchView = false
-        withAnimation { isLoading = true }
+        await displayLoadingView(true)
         do {
-            fetchResult = try await fetchEarthquakes(since: paramPeriod, strength: paramStrength)
-            withAnimation { isLoading = false }
+            let fetchResult = try await fetchEarthquakes(since: paramPeriod, strength: paramStrength)
+            await displayLoadingView(false)
+            guard fetchResult.count <= Constants.resultLimit else { return error = EarthquakeError.tooManyResult(result: fetchResult) }
+            await displayEarthquakes(result: fetchResult)
         } catch (let fetchError) {
             guard let fetchError = fetchError as? EarthquakeError else {
-                withAnimation { isLoading = false }
+                await displayLoadingView(false)
                 return error = .unknown(message: fetchError.localizedDescription)
             }
-            withAnimation { isLoading = false }
+            await displayLoadingView(false)
             error = fetchError
         }
-        guard fetchResult.count <= Constants.resultLimit else { return error = EarthquakeError.tooManyResult(result: fetchResult) }
-        displayEarthquakes(result: fetchResult)
     }
 
-    func displayEarthquakes(result: [Earthquake], range: DisplayRange = .first) {
+    func displayEarthquakes(result: [Earthquake], range: DisplayRange = .first) async {
         selectedCell = nil
         if range == .first {
-            guard result.count >= Constants.resultLimit else { return withAnimation { self.earthquakes = result } }
-            withAnimation { self.earthquakes = Array(result[...(Constants.resultLimit - 1)]) }
+            guard result.count >= Constants.resultLimit else { return  await updateEarthquakes(with: result) }
+            await updateEarthquakes(with: Array(result[...(Constants.resultLimit - 1)]))
         } else if range == .last {
-            guard result.count >= Constants.resultLimit else { return withAnimation { self.earthquakes = result } }
+            guard result.count >= Constants.resultLimit else { return await updateEarthquakes(with: result) }
             let firstBound = ((result.count - 1) - (Constants.resultLimit - 1))
-            let lastBound = result.count - 1
-            withAnimation { self.earthquakes = Array(result[firstBound...lastBound]) }
+            let lastBound = (result.count - 1)
+            await updateEarthquakes(with: Array(result[firstBound...lastBound]))
         }
     }
 
@@ -79,7 +78,25 @@ import SwiftUI
     }
 }
 
+// MARK: - EXTENSION PRIVATE PARAMETERS & METHODES
 private extension EarthquakeViewModel {
+    /// Converted the `selectedStrength` to a `ApiJsonFeeds.Strength`. Useful for displaying menus.
+    var paramStrength: ApiJsonFeeds.Strength {
+        switch selectedStrength {
+        case .all:
+            return .all
+        case .overMag1:
+            return .overMag1
+        case .overMag2_5:
+            return .overMag2_5
+        case .overMag4_5:
+            return .overMag4_5
+        case .significant:
+            return .significant
+        }
+    }
+
+    /// Converted the `selectedPeriod` to a `ApiJsonFeeds.Period`. Useful for displaying menus.
     var paramPeriod: ApiJsonFeeds.Period {
         switch selectedPeriod {
         case .oneHour:
@@ -91,6 +108,22 @@ private extension EarthquakeViewModel {
         case .aMonth:
             return .aMonth
         }
+    }
+
+    func displayLoadingView(_ val: Bool) async {
+        await MainActor.run { withAnimation { isLoading = val } }
+    }
+
+    func updateEarthquakes(with newValue: [Earthquake]) async {
+        await MainActor.run { withAnimation { earthquakes = newValue } }
+    }
+
+    func fetchEarthquakes(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) async throws -> [Earthquake] {
+        let parameter = "\(strength.rawValue)_\(period.rawValue)"
+        let urlString: String = ApiJsonFeeds.baseURL + ApiJsonFeeds.endpoint + "/" + parameter + "." + ApiJsonFeeds.FileFormat.json
+        guard let url = URL(string: urlString) else { throw EarthquakeError.invalidURL}
+        let decodedEarthquakes: DecodedEarthquakes = try await httpClient.fetch(url: url, dateDecodingStrategy: .millisecondsSince1970)
+        return decodedEarthquakes.earthquakes
     }
 
     func titleGenerator() -> String {
@@ -121,21 +154,6 @@ private extension EarthquakeViewModel {
         return strengthString + perodString
     }
 
-    var paramStrength: ApiJsonFeeds.Strength {
-        switch selectedStrength {
-        case .all:
-            return .all
-        case .overMag1:
-            return .overMag1
-        case .overMag2_5:
-            return .overMag2_5
-        case .overMag4_5:
-            return .overMag4_5
-        case .significant:
-            return .significant
-        }
-    }
-
     func displayMapLocation(for earthquakeID: String?) {
         guard let earthquakeID else { return }
         guard let earthquake = filterdEarthquakes.first(where: { $0.id == earthquakeID }) else { return }
@@ -150,13 +168,5 @@ private extension EarthquakeViewModel {
             )
         )
         withAnimation { self.mapPosition = position }
-    }
-
-    func fetchEarthquakes(since period: ApiJsonFeeds.Period, strength: ApiJsonFeeds.Strength) async throws -> [Earthquake] {
-        let parameter = "\(strength.rawValue)_\(period.rawValue)"
-        let urlString: String = ApiJsonFeeds.baseURL + ApiJsonFeeds.endpoint + "/" + parameter + "." + ApiJsonFeeds.FileFormat.json
-        guard let url = URL(string: urlString) else { throw EarthquakeError.invalidURL}
-        let decodedEarthquakes: DecodedEarthquakes = try await httpClient.fetch(url: url, dateDecodingStrategy: .millisecondsSince1970)
-        return decodedEarthquakes.earthquakes
     }
 }

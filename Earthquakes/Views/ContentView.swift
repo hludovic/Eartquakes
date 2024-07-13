@@ -22,7 +22,7 @@ struct ContentView: View {
                     InspectorView(earthquake: viewModel.selectedCell)
                 }
                 .toolbar {
-                    Button {  viewModel.isShowingInspector.toggle() } label: {
+                    Button { viewModel.isShowingInspector.toggle() } label: {
                         Label("Inspector", systemImage: "info.circle")
                     }
                     .disabled(viewModel.isInspectorDisabled)
@@ -31,10 +31,11 @@ struct ContentView: View {
         .alert(isPresented: $viewModel.isShowingError, error: viewModel.error) { error in
             if case let .tooManyResult(result: result) = error {
                 Button("Display the first \(Constants.resultLimit) results.") {
-                    viewModel.displayEarthquakes(result: result, range: .first)
+                    Task { await viewModel.displayEarthquakes(result: result, range: .first) }
                 }
                 Button("Display the last \(Constants.resultLimit) results.") {
-                    viewModel.displayEarthquakes(result: result, range: .last)
+                    Task { await viewModel.displayEarthquakes(result: result, range: .last) }
+
                 }
                 Button("CANCEL", role: .cancel) {}
             } else {

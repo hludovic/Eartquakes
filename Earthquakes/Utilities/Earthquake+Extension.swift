@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 extension Earthquake {
-    ///  Instantiate and returns a `CLLocationCoordinate2D` that includes the longitude and latitude of the earthquake.
+    /// Instantiate and returns a `CLLocationCoordinate2D` that includes the longitude and latitude of the earthquake.
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
