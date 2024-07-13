@@ -30,7 +30,17 @@ struct ContentView: View {
                 }
         }
         .alert(isPresented: $viewModel.isShowingError, error: viewModel.error) { error in
-            Button("OK") { viewModel.isShowingError = false }
+            if case let .tooManyResult(result: result) = error {
+                Button("Display the first \(Constants.resultLimit) results.") {
+                    viewModel.displayEarthquakes(result: result, range: .first)
+                }
+                Button("Display the last \(Constants.resultLimit) results.") {
+                    viewModel.displayEarthquakes(result: result, range: .last)
+                }
+                Button("CANCEL", role: .cancel) { }
+            } else {
+                Button("OK") { viewModel.isShowingError = false }
+            }
         } message: { error in
             Text(error.failureReason)
         }

@@ -11,7 +11,7 @@ enum EarthquakeError: LocalizedError {
     case badUrlResponse
     case failDecodingData
     case invalidURL
-    case tooManyResult(count: Int)
+    case tooManyResult(result: [Earthquake])
     case unknown(message: String)
 
     var errorDescription: String? {
@@ -24,7 +24,7 @@ enum EarthquakeError: LocalizedError {
             "Invalid URL"
         case .unknown(message: _):
             "Error Encountered"
-        case .tooManyResult(count: _):
+        case .tooManyResult(result: _):
             "Result Voluminous"
         }
     }
@@ -39,8 +39,8 @@ enum EarthquakeError: LocalizedError {
             "Unable to communicate with the server."
         case .unknown(message: let message):
             message
-        case .tooManyResult(count: let count):
-            "\(count) earthquakes were found. This number is too large. Adjust your search for a more pleasant result to consult"
+        case .tooManyResult(result: let result):
+            "\(result.count) earthquakes were found. This number is too large to be displayed. Adjust your search for a more pleasant result to consult."
         }
     }
 }

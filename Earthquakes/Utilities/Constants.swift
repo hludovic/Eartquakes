@@ -9,6 +9,7 @@
 struct Constants {
     /// The maximum amount of elements that can be displayed in the `EarthquakesView` and on the `MapView`.
     static let resultLimit: Int = 300
+    static let mapCameraDistance: Double = 10_000_000
 }
 
 struct ApiJsonFeeds {

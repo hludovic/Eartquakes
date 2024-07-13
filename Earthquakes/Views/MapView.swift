@@ -20,7 +20,6 @@ struct MapView: View {
                     Annotation(mapLocation.title, coordinate: mapLocation.coordinate) { 
                         MapItemView(radius: mapLocation.mapItemRadius)
                             .onTapGesture { viewModel.selectedCell = mapLocation }
-
                     }
                 }
             }

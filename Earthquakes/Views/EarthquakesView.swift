@@ -32,9 +32,9 @@ struct EarthquakesView: View {
         .toolbar {
             ToolbarItem(placement: .automatic) {
                 Button("Search", systemImage: "line.3.horizontal.decrease.circle") {
-                    viewModel.isShowingSearchFilter = true
+                    viewModel.isShowingSearchView = true
                 }
-                .popover(isPresented: $viewModel.isShowingSearchFilter) {
+                .popover(isPresented: $viewModel.isShowingSearchView) {
                     SearchFiltersView()
                         .padding()
                 }
