@@ -59,10 +59,9 @@ import SwiftUI
         displayEarthquakes(result: fetchResult)
     }
 
-    enum DisplayRange { case first, last, none }
+    enum DisplayRange { case first, last }
 
     func displayEarthquakes(result: [Earthquake], range: DisplayRange = .first) {
-        guard range != .none else { return }
         selectedCell = nil
         if range == .first {
             guard result.count >= Constants.resultLimit else { return withAnimation { self.earthquakes = result } }
@@ -96,7 +95,6 @@ private extension EarthquakeViewModel {
     }
 
     func titleGenerator() -> String {
-        var header = ""
         var strengthString = ""
         var perodString = ""
         switch selectedStrength {
@@ -121,8 +119,7 @@ private extension EarthquakeViewModel {
         case .aMonth:
             perodString = ", Past 30 Days."
         }
-        header = earthquakes.isEmpty ? "" : "(\(earthquakes.count)) "
-        return header + strengthString + perodString
+        return strengthString + perodString
     }
 
     var paramStrength: ApiJsonFeeds.Strength {

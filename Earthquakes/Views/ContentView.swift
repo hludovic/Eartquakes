@@ -22,7 +22,6 @@ struct ContentView: View {
                     InspectorView(earthquake: viewModel.selectedCell)
                 }
                 .toolbar {
-                    Spacer()
                     Button {  viewModel.isShowingInspector.toggle() } label: {
                         Label("Inspector", systemImage: "info.circle")
                     }
@@ -37,7 +36,7 @@ struct ContentView: View {
                 Button("Display the last \(Constants.resultLimit) results.") {
                     viewModel.displayEarthquakes(result: result, range: .last)
                 }
-                Button("CANCEL", role: .cancel) { }
+                Button("CANCEL", role: .cancel) {}
             } else {
                 Button("OK") { viewModel.isShowingError = false }
             }

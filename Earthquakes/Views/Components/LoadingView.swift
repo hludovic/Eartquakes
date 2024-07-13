@@ -12,7 +12,7 @@ struct LoadingView: View {
         ZStack {
             Rectangle()
                 .background(.thinMaterial)
-                .opacity(0.9)
+                .opacity(0.7)
                 .ignoresSafeArea()
             VStack {
                 ProgressView()
@@ -25,7 +25,7 @@ struct LoadingView: View {
                     .foregroundStyle(.secondary)
             }
             .padding()
-            .background(.thickMaterial, in: (RoundedRectangle(cornerRadius: 16.0))
+            .background(.thinMaterial, in: (RoundedRectangle(cornerRadius: 16.0))
             )
         }
     }
