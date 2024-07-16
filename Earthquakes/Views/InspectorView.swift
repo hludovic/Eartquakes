@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InspectorView: View {
     var earthquake: Earthquake?
+    @State private var isShowingURLPopuver: Bool = false
 
     var body: some View {
         Form {
@@ -82,7 +83,12 @@ struct InspectorView: View {
                 Text("More Informations")
                     .bold()
                 Text("\(earthquake?.url ?? "")")
+                    .foregroundStyle(Color.accentColor)
                     .italic()
+                    .onTapGesture { isShowingURLPopuver.toggle() }
+                    .popover(isPresented: $isShowingURLPopuver) {
+                        URLPopoverView(urlString: earthquake?.url)
+                    }
             }
         }
     }
