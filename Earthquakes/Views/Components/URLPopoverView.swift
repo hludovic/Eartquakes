@@ -9,6 +9,8 @@ import SwiftUI
 
 struct URLPopoverView: View {
     @Environment(\.openURL) var openURL
+    @Environment(\.dismiss) var dismiss
+
     let urlString: String?
 
     var body: some View {
@@ -30,12 +32,14 @@ struct URLPopoverView: View {
 
     func copyToClipboard() {
         if let urlString {
+            dismiss()
             let pastboard = UIPasteboard.general
             pastboard.string = urlString
         }
     }
 
     func openInBrowser() {
+        dismiss()
         guard let urlString else { return }
         guard let url = URL(string: urlString) else { return }
         openURL(url)
