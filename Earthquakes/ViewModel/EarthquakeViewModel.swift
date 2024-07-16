@@ -23,6 +23,7 @@ import SwiftUI
     var isShowingSearchView: Bool = false
     var isShowingInspector = false
     var isShowingError: Bool = false
+    var isShowingDocumentation: Bool = false
     var isInspectorDisabled: Bool {
         guard !isShowingInspector else { return false }
         return selectedCell == nil ? true : false

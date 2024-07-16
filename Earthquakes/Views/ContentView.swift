@@ -21,7 +21,13 @@ struct ContentView: View {
                 .inspector(isPresented: $viewModel.isShowingInspector){
                     InspectorView(earthquake: viewModel.selectedCell)
                 }
+                .sheet(isPresented: $viewModel.isShowingDocumentation) {
+                    DocumentationView()
+                }
                 .toolbar {
+                    Button { viewModel.isShowingDocumentation.toggle()} label: {
+                        Label("Documentation", systemImage: "books.vertical")
+                    }
                     Button { viewModel.isShowingInspector.toggle() } label: {
                         Label("Inspector", systemImage: "info.circle")
                     }
