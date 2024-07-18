@@ -15,18 +15,13 @@ struct MapItemView: View {
     var body: some View {
         ZStack {
             Circle()
-                .foregroundStyle(Color.mapItemBorder)
-                .frame(
-                    width: isSelected ? radius + 20 : radius + 1,
-                    height: isSelected ? radius + 20 : radius + 1
-                )
-                .opacity(0.4)
-
+                .stroke(Color.secondary, lineWidth: isSelected ? 10 : 1)
+                .frame(width: isSelected ? radius + 10 : radius)
             Circle()
-                .foregroundStyle(isSelected ? Color.accentColor : Color.accentColor)
-                .frame(width: radius, height: radius)
-                .opacity(isSelected ? 0.7 : 0.4)
+                .foregroundStyle(Color.mapItem)
+                .frame(width: radius)
         }
+        .opacity(0.4)
     }
 }
 
