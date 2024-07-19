@@ -62,13 +62,6 @@ struct InspectorView: View {
                     Text(earthquake?.time.toString() ?? "")
                         .italic()
                 }
-                HStack {
-                    Text("Updated")
-                        .bold()
-                    Spacer()
-                    Text(earthquake?.updated.toString() ?? "")
-                        .italic()
-                }
             }
             Section("Pager") {
                 HStack {
