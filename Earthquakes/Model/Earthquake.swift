@@ -11,6 +11,7 @@ import Foundation
 struct Earthquake: Identifiable, Hashable {
     let id: String
     let magnitude: Float
+    let magType: String
     let place: String
     let time: Date
     let updated: Date

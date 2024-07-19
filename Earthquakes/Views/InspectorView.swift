@@ -100,7 +100,7 @@ struct InspectorView: View {
 
     func stringMagnitude() -> String {
         guard let earthquake else { return "" }
-        return "\(earthquake.magnitude.description) mw"
+        return "\(earthquake.magnitude.description) \(earthquake.magType)"
     }
 }
 

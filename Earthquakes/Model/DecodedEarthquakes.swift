@@ -22,6 +22,7 @@ extension EarthquakeViewModel {
                 let earthquake = Earthquake(
                     id: feature.id,
                     magnitude: feature.properties.mag,
+                    magType: feature.properties.magType,
                     place: feature.properties.place,
                     time: feature.properties.time,
                     updated: feature.properties.updated,
@@ -63,6 +64,7 @@ extension EarthquakeViewModel {
 
             struct Propertie: Decodable {
                 let mag: Float
+                let magType: String
                 let place: String
                 let time: Date
                 let updated: Date

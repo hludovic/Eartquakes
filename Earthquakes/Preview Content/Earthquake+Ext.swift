@@ -19,6 +19,7 @@ extension Earthquake {
         Earthquake(
             id: "2672e2a1-38f5-49a9-8eae-cc43909423cb",
             magnitude: 4.81,
+            magType: "md",
             place: "3 km NNW of El Centro, CA",
             time: fakeDates[0],
             updated: Date.now,
@@ -36,6 +37,7 @@ extension Earthquake {
         Earthquake(
             id: "e0f80929-4130-40d1-90ae-291b3e7e4ad1",
             magnitude: 4.81,
+            magType: "md",
             place: "51 km NNE of Port-Olry, Vanuatu",
             time: fakeDates[1],
             updated: Date.now,
@@ -53,6 +55,7 @@ extension Earthquake {
         Earthquake(
             id: "92d5dffe-b2fd-419c-b6d1-e7311e716b94",
             magnitude: 4.81,
+            magType: "mww",
             place: "3 km NNW of El Centro, CA",
             time: fakeDates[2],
             updated: Date.now,
@@ -70,6 +73,7 @@ extension Earthquake {
         Earthquake(
             id: "2fe4f233-a1cc-4869-aa3d-617dd21b27fe",
             magnitude: 4.81,
+            magType: "ml",
             place: "3 km NNW of El Centro, CA",
             time: fakeDates[3],
             updated: Date.now,
