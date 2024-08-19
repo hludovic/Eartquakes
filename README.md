@@ -10,8 +10,5 @@ This is an application for iOS that allows you to consult information on earthqu
  <div align="center">
 <img src="../assets/1.webp?raw=true" width="45%"></img>
 <img src="../assets/2.webp?raw=true" width="45%"></img> 
-<img src="../assets/3.webp?raw=true" width=« 45% »></img>
+<img src="../assets/3.webp?raw=true" width="45%"></img>
 </div>
-
-
-Test of the new features of ios 17.6
