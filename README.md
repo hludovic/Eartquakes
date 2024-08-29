@@ -1,3 +1,6 @@
+<div align="center">
+<img src="../assets/eqIcon.png?raw=true" width="7%"></img> 
+
 # Earthquakes 
 *Testing the new features of iOS 17.6.*
 </div>
